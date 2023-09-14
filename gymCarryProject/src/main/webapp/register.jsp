@@ -90,20 +90,53 @@
         }
 
         </style>
+        <script>
+        	function checkInput (form) {
+        		var result = true;
+        		var check = /^[가-힣]+$/ //한글만 입력받기
+        		var check2 = /[^0-9-]/;//숫자와-를 뺀 모든 문자 
+        		
+        		if(!form.id.value) 
+        			alert("아이디를 입력해주세요");
+        		
+        		if(!form.name.value) {
+        			alert("이름을 입력해주세요")
+        		
+        		}else if(check.test(form.name.value)) {
+        			alert("이름을 정확하게 입력해주세요"); 
+        		}
+        		
+        		if(!form.pwd.value) 
+        			alert("비밀번호를 입력해주세요"); 
+        		
+        		if(form.pwdc.value != form.pwd.value) {
+        			result = false;
+        			alert("비밀번호가 동일하지 않습니다.");
+        		}
+        		
+        		if(check2.test(form.phone.value) || form.phone.length != 13 ) {
+        			alert("핸드폰 번호를 -을 추가하여 입려해주세요");
+        		}
+        		
+        	}
+        
+              
+        </script>
+        
     </head>
     <body>
-     <form class="register_form">
-        <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
+     <form class="register_form" name="form" action="loginAction.jsp" onsubmit="return checkInput ">
+        <input class="input_field input_name" type="text" name="name" value="" placeholder="이름"/>
         <div class="id_wrapper">
 
-        <input class="input_field input_login" type="text" name="id"  placeholder="아이디"/>
+        <input class="input_field input_login" type="text" name="id" value="" placeholder="아이디"/>
         <input class="reg_btn dc_btn" type="button" name="dc"  value="중복확인"/>
             
         </div>
-        <input class="input_field input_login" type="text" name="pwd"  placeholder="비밀번호"/>
-        <input class="input_field input_login" type="text" name="pwdC"  placeholder="비밀번호확인"/>
-        <input class="input_field input_ep" type="text" name="email"  placeholder="이메일"/>
-        <input class="input_field input_ep" type="text" name="phone"  placeholder="전화번호"/>
+        <input class="input_field input_login" type="password" name="pwd" value="" placeholder="비밀번호" />
+        <input class="input_field input_login" type="password" name="pwdC" value="" placeholder="비밀번호확인" />
+        <input class="input_field input_ep" type="email" name="email" value="" placeholder="이메일" />
+        <input class="input_field input_ep" type="tel" maxlength="13" name="phone" value="" placeholder="010-1234-1234" />
         <div class="check_wrapper">
         <input class="input_feild input_check" type="checkbox" name="check"  /> 
         <p class="input_p">개인정보 이용에 대한 동의</p>  
