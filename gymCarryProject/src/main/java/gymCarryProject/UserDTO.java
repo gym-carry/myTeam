@@ -1,0 +1,5 @@
+package gymCarryProject;
+
+public class UserDTO {
+	private String name;
+}
