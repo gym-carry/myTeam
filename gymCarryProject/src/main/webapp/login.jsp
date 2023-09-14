@@ -88,7 +88,7 @@
   </style>
 </head>
 <body>
-    <form class="login_form">
+    <form class="login_form" action="loginAction.jsp">
       <input class="input_field input_login" type="text" name="id" placeholder="아이디">
       <input class="input_field input_login" type="text" name="pwd" placeholder="비밀번호">
       <input class="reg_btn" type="submit" value="로그인">
