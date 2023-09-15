@@ -118,25 +118,24 @@
         			alert("핸드폰 번호를 -을 추가하여 입려해주세요");
         		}
         		
-        	}
-        
+        	}       
               
         </script>
         
     </head>
     <body>
      <form class="register_form" name="form" action="loginAction.jsp" onsubmit="return checkInput ">
-        <input class="input_field input_name" type="text" name="name" value="" placeholder="이름"/>
+        <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
         <div class="id_wrapper">
 
-        <input class="input_field input_login" type="text" name="id" value="" placeholder="아이디"/>
+        <input class="input_field input_login" type="text" name="id" placeholder="아이디"/>
         <input class="reg_btn dc_btn" type="button" name="dc"  value="중복확인"/>
             
         </div>
-        <input class="input_field input_login" type="password" name="pwd" value="" placeholder="비밀번호" />
-        <input class="input_field input_login" type="password" name="pwdC" value="" placeholder="비밀번호확인" />
-        <input class="input_field input_ep" type="email" name="email" value="" placeholder="이메일" />
-        <input class="input_field input_ep" type="tel" maxlength="13" name="phone" value="" placeholder="010-1234-1234" />
+        <input class="input_field input_login" type="password" name="pwd"  placeholder="비밀번호" />
+        <input class="input_field input_login" type="password" name="pwdC"  placeholder="비밀번호확인" />
+        <input class="input_field input_ep" type="email" name="email" placeholder="이메일" />
+        <input class="input_field input_ep" type="tel" maxlength="13" name="phone" placeholder="010-1234-1234" />
         <div class="check_wrapper">
         <input class="input_feild input_check" type="checkbox" name="check"  /> 
         <p class="input_p">개인정보 이용에 대한 동의</p>  
