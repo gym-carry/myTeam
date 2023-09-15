@@ -161,9 +161,23 @@
               
         </script>
         -->
+        <script type="text/javascript">
+        
+        function checkInput(myform) {
+        	let result = true;
+        	if(!myform.name.value)  { result = false;}
+        	if(!myform.id.value)  { result = false;}
+        	if(!myform.pwd.value)  { result = false;}
+        	if(!myform.pwdC.value)  { result = false;}
+        	if(!myform.email.value)  { result = false;}
+        	if(!myform.phone.value)  { result = false;}
+        	alert(result);
+        	return result;
+        }
+        </script>
     </head>
     <body>
-     <form class="register_form" name="myform" >
+     <form class="register_form" name="myform" onsubmit="return checkInput(myform)" >
         <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
         <div class="id_wrapper">
 
