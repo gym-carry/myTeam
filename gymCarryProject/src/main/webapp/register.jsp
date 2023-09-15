@@ -177,7 +177,7 @@
         </script>
     </head>
     <body>
-     <form class="register_form" name="myform" onsubmit="return checkInput(myform)" >
+     <form class="register_form" name="myform" action="registerAction.jsp" onsubmit="return checkInput(myform)" >
         <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
         <div class="id_wrapper">
 
