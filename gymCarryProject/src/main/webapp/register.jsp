@@ -98,24 +98,38 @@
         		
         		if(!form.id.value) 
         			alert("아이디를 입력해주세요");
+        			return false;
         		
         		if(!form.name.value) {
         			alert("이름을 입력해주세요")
+        			return false;
         		
         		}else if(check.test(form.name.value)) {
         			alert("이름을 정확하게 입력해주세요"); 
+        			return false;
         		}
+        		
+     			if(for.pwd.search(" ") != -1){
+     				alert("비밀번호는 공백을 포함할 수 없습니다.");
+     				return false;
+     			}
         		
         		if(!form.pwd.value) 
         			alert("비밀번호를 입력해주세요"); 
-        		
+        		return false;
+        			
         		if(form.pwdc.value != form.pwd.value) {
-        			result = false;
         			alert("비밀번호가 동일하지 않습니다.");
+        			return false;
         		}
         		
+        		if(!form.email.value)
+        			alert("이메일을 입력해주세요");
+        			result = false;
+        			
         		if(check2.test(form.phone.value) || form.phone.length != 13 ) {
         			alert("핸드폰 번호를 -을 추가하여 입려해주세요");
+        			result = false;
         		}
         		
         	}       
@@ -124,7 +138,7 @@
         
     </head>
     <body>
-     <form class="register_form" name="form" action="loginAction.jsp" onsubmit="return checkInput ">
+     <form class="register_form" name="form" action="loginAction.jsp" onsubmit="return checkInput(form) ">
         <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
         <div class="id_wrapper">
 
