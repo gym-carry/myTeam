@@ -35,9 +35,9 @@ public class UserDAO {
 		System.out.println(sql);
 		stmt.setString(1, dto.getId());
 		stmt.setString(2, dto.getName());
-		stmt.setString(1, dto.getPwd());
-		stmt.setString(1, dto.getEmail());
-		stmt.setString(1, dto.getPhone());
+		stmt.setString(3, dto.getPwd());
+		stmt.setString(4, dto.getEmail());
+		stmt.setString(5, dto.getPhone());
 		
 		result = stmt.executeUpdate();
 		stmt.close();
