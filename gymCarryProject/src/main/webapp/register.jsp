@@ -162,6 +162,14 @@
         </script>
         -->
         <script type="text/javascript">
+        // const로 선언해서 변경되지 않도록 한다
+        function inputCheck(){
+        	const name = document.getElementById("name");
+        	const id = document.getElementById("id");
+        	const pwd = document.getElementById("pwd");
+        	const pwdC = document.getElementById("pwdC");
+        	
+        }
         
         function checkInput(myform) {
         	let result = true;
