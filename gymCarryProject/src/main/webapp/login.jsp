@@ -10,7 +10,7 @@
   <title>login</title>
 </head>
 <body>
-	<form class="login_form">
+	<form class="login_form" action="loginAction.jsp">
       <input id="id_input" class="input_field input_login" type="text" name="id" placeholder="아이디">
       <input id="pwd_input" class="input_field input_login" type="text" name="pwd" placeholder="비밀번호">
       <input id="submit_btn" class="reg_btn" type="submit" value="로그인">
