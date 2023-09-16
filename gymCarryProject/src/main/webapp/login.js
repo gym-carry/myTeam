@@ -20,8 +20,15 @@ const getpwdInputValue = (e) => {
 };
 
 // onloginHandler 함수
-const onloginHandler = () => {
-  alert("로그인 성공");
+const onloginHandler = (e) => {
+  e.preventDefault();
+  if (idInput.value === "") {
+    alert("아이디를 입력해주세요");
+  } else if (pwdInput.value === "") {
+    alert("비밀번호를 입력해주세요");
+  } else {
+    alert("로그인을 진행하시겠습니까?");
+  }
 };
 
 // 아이디 인풋 이벤트
