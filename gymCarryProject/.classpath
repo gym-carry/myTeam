@@ -9,6 +9,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="/Users/rowoon/Downloads/SpringBoard/WebContent/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="/Users/rowoon/eclipse-workspace/OJDBC8-Full/ojdbc8.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

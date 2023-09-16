@@ -62,45 +62,25 @@ public class UserDAO {
 		return user;
 	}
 	
-	public int loginCheck(String id, String pwd) {
-		Connection conn = null;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		
-		String dbPWD = "";
-		int x = -1; // 아이디를 잘못 입력햇을 시 -1
-		
+	public int login(String id, String pwd) {
+		String sql = "SELECT PWD FROM R_USER WHERE ID=?";
 		try {
-			StringBuffer query = new StringBuffer();
-            query.append("SELECT PASSWORD FROM R_USER WHERE ID=?");
-            
-            conn = pool.getConnection();
-            stmt = conn.prepareStatement(query.toString());
-            stmt.setString(1, id);
-            rs = stmt.executeQuery();
-            
-            if(rs.next()) {
-            	dbPWD = rs.getString("password");
-            	
-            	if(dbPWD.equals(pwd)) {
-            		x = 1;
-            	}else {
-            		x = 0;
-            	}
-            }else {
-            	x = -1;
-            }
-            
-            return x;
-		}catch(Exception sqle){
-			throw new RuntimeException(sqle.getMessage());
-		}finally {
-            try{
-                if ( stmt != null ){ stmt.close(); stmt=null; }
-                if ( conn != null ){ conn.close(); conn=null;    }
-            }catch(Exception e){
-                throw new RuntimeException(e.getMessage());
-            }
-        }
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1, id);
+			rs = stmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getString(1).equals(pwd)) {
+					return 1;
+				}else 
+					return 0;
+			}
+			return -1;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -2; // 데이터베이스 오류
+		
+
 	}
 }
