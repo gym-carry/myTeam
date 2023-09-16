@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ page import="gymCarryProject.*, java.util.Date"%>
+ <jsp:useBean id="db" class="gymCarryProject.UserDAO" scope="application" />
  <jsp:useBean id="user" class="gymCarryProject.UserDTO" scope="page" />
  <jsp:setProperty property="*" name="user" />
 <!DOCTYPE html>
@@ -16,6 +17,9 @@
 	String pwd = request.getParameter("pwd");
 	String email = request.getParameter("email");
 	String phone = request.getParameter("phone");
+	
+	user = db.select(user);
+	System.out.println("select :: " + user);
 	%>
 </body>
 </html>
