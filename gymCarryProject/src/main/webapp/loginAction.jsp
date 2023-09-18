@@ -17,7 +17,7 @@
 </head>
 <body>
 	<%
-/*  		int result = db.login(user.getId(), user.getPwd());
+  		int result = db.login(user.getId(), user.getPwd());
 		System.out.println(result);
 		if(result == 1){
 			PrintWriter script = response.getWriter();
@@ -45,14 +45,14 @@
 			script.println("alert('데이터베이스 오류가 발생헀습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		}   */
+		}  
 		 
-  		String id = request.getParameter("id");
+/*   		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		System.out.println(id + "\n" + pwd + "\n");
 
 		user = db.select(user);
-		System.out.println("select :: " + user); 
+		System.out.println("select :: " + user);  */
 	 
 	%>
 </body>
