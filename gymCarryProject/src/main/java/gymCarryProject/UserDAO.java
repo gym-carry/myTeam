@@ -16,8 +16,8 @@ public class UserDAO {
 	public UserDAO () throws ClassNotFoundException {
 		try {
 		String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	    String dbID =  "hr";
-	    String dbPWD = "hr";
+	    String dbID =  "scott";
+	    String dbPWD = "tiger";
 	    Class.forName("oracle.jdbc.OracleDriver");
 	    
 	    pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 4, true, 500);
@@ -43,6 +43,70 @@ public class UserDAO {
 		stmt.close();
 		pool.releaseConnection(con);
 		return result;
-		
 	}
+	
+	public UserDTO select(UserDTO input) throws SQLException {
+//	    Connection con = null;
+////	    PreparedStatement stmt = null;
+//	    ResultSet rs = null;
+		
+		
+		con = pool.getConnection();
+		String sql = "select * from R_USER where id = '" + input.getId() + "'and pwd = '" + input.getPwd() + "'";
+		System.out.println(sql);
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		UserDTO user = null;
+		while(rs.next()) {
+			user = new UserDTO(rs.getString("id"),rs.getString("name"), rs.getString("pwd"), rs.getString("email"), rs.getString("phone"));
+		}
+		System.out.println(user);
+		rs.close();
+		stmt.close();
+		pool.releaseConnection(con);
+		return user;
+	}
+	
+	public int login(String id, String pwd) throws SQLException, ClassNotFoundException {
+	    Connection con = null;
+	    PreparedStatement stmt = null;
+	    ResultSet rs = null;
+
+	    try {
+	        Class.forName("oracle.jdbc.OracleDriver");
+	        con = pool.getConnection();
+	        String sql = "SELECT PWD FROM R_USER WHERE ID=?";
+	        stmt = con.prepareStatement(sql);
+	        stmt.setString(1, id);
+	        rs = stmt.executeQuery();
+	        
+	        if (rs.next()) {
+	            if (rs.getString(1).equals(pwd)) {
+	                return 1;
+	            } else {
+	                return 0;
+	            }
+	        }
+	        
+	        return -1;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return -2; // 데이터베이스 오류
+	    } finally {
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (stmt != null) {
+	                stmt.close();
+	            }
+	            if (con != null) {
+	                con.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	}
+
 }
