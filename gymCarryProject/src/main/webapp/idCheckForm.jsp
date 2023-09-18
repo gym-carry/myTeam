@@ -10,7 +10,7 @@
 
 <div style="text-align: center">
 	<h2>아이디 중복확인</h2>
-	<form name="myForm">
+	<form action="idCheckAction.jsp" name="myForm">
 	ID입력<input id="idCheck" type="text" name="id" maxlength="12" />
 	<input id = "submitBtn"type="submit" value="중복확인" />
 	</form>
@@ -31,6 +31,7 @@
 		} 
 	}
 	
+	// submit 이벤트
 	button.addEventListener('click', blankCheck);
 	
 	function getInputValue () {
