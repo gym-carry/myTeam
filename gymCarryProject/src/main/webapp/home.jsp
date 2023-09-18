@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <jsp:useBean id="login" class="gymCarryProject.UserDTO" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>home</title>
 <style>
     * {
         box-sizing:border-box;
@@ -32,7 +33,6 @@
         top: 0; 
         gap: 10px;
         margin-right: 20px;
-
     }
 
     .header_logo {
@@ -74,12 +74,11 @@
 
         <ul class="header_nav">
             <li>
-                <a href="login.jsp">로그인</a>
+                <%=login.getId() %>님
             </li> 
-
             <li>
-                <a href="register.jsp">회원가입</a>
-            </li>
+                <a href="main.html">로그아웃</a>
+            </li> 
 
             <li>
                 <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
