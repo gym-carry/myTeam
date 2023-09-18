@@ -54,6 +54,7 @@
       border-radius: 5px;
       padding: 10px;
       color: #fff;
+      cursor: pointer;
     }
 
     .form_sub_wrpper{
