@@ -174,6 +174,14 @@
         	alert(result);
         	return result;
         }
+        
+        //id 유효성 검사      
+        
+        function checkId(){
+        	const id = document.getElementById("id");
+        	
+        }
+        
         </script>
     </head>
     <body>
