@@ -14,7 +14,7 @@
       <input id="id_input" class="input_field input_login" type="text" name="id" placeholder="아이디">
       <input id="pwd_input" class="input_field input_login" type="text" name="pwd" placeholder="비밀번호">
       <input id="submit_btn" class="reg_btn" type="submit" value="로그인">
-      <!-- <div class="form_sub_wrpper">
+      <div class="form_sub_wrpper">
           <a class="a_link" href="/register.jsp">회원가입</a>
         <ul class="form_ul">
           <li class="form_li">
@@ -24,7 +24,7 @@
             <a href="#">비밀번호 찾기</a>
           </li>
         </ul>
-      </div>  -->
+      </div>
     </form>
     <script type="text/javascript">
     function onLoginSubmit(myForm){
