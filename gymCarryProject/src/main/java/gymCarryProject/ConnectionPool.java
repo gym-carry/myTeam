@@ -1,6 +1,6 @@
 package gymCarryProject;
 /*
- * @(#)ConnectionPool.java	1.12 98/02/27
+ * @(#)ConnectionPool.java   1.12 98/02/27
  *
  * Copyright (c) 02/27/98 Sun Microsystems, Inc. All Rights Reserved.
  *
@@ -96,7 +96,7 @@ public final class ConnectionPool {
     // Whether we should re-use connections or not
     private boolean reuseCons = true;
 
-	private static ConnectionPool pool;
+   private static ConnectionPool pool;
 
     /**
      * Creates a new <code>ConnectionPool</code> with defaults for
@@ -104,93 +104,93 @@ public final class ConnectionPool {
      * Specifies the url, user and password for <code>Connections</code> and the
      * characteristics of the pool.
      *
-     * @param	  url		The url for the database, as in
-     *				jdbc:<em>subprotocol</em>:<em>subname</em>.
-     * @param	  user		The user to connect to the database as.
-     * @param	  password	The user's password.
-     * @param	  initialCons	The number of connections to create now.
-     * @param	  maxCons	The maximum number of connections allowed.
-     *				A value <= 0 means "no limit". If maxCons > 0
-     *				and maxCons < initialCons then maxCons takes
-     *				precedence.
-     * @param	  block		If a request for a connection should block until
-     *				a connection is released when none are available
-     *				and maxCons has been reached.
-     * @param	  timeout	Maximum time to wait for a connection to be
-     *				released when maxCons are in use.
+     * @param     url      The url for the database, as in
+     *            jdbc:<em>subprotocol</em>:<em>subname</em>.
+     * @param     user      The user to connect to the database as.
+     * @param     password   The user's password.
+     * @param     initialCons   The number of connections to create now.
+     * @param     maxCons   The maximum number of connections allowed.
+     *            A value <= 0 means "no limit". If maxCons > 0
+     *            and maxCons < initialCons then maxCons takes
+     *            precedence.
+     * @param     block      If a request for a connection should block until
+     *            a connection is released when none are available
+     *            and maxCons has been reached.
+     * @param     timeout   Maximum time to wait for a connection to be
+     *            released when maxCons are in use.
      * @exception SQLException if a connection could not be established, this
-     *		      is the exception thrown by DriverManager.
-     * @see	  java.sql.Connection
-     * @see	  java.sql.DriverManager
-     * @see	  java.sql.DriverManager#getConnection(String, String, String)
+     *            is the exception thrown by DriverManager.
+     * @see     java.sql.Connection
+     * @see     java.sql.DriverManager
+     * @see     java.sql.DriverManager#getConnection(String, String, String)
      **/
     private ConnectionPool(String url, String user, String password,
-			  int initialCons, int maxCons, boolean block,
-			  long timeout) throws SQLException {
+           int initialCons, int maxCons, boolean block,
+           long timeout) throws SQLException {
 
-	this.url = url;
-	this.user = user;
-	this.password = password;
-	this.initialCons = initialCons;
-	this.maxCons = maxCons;
-	this.block = block;
-	this.timeout = timeout;
+   this.url = url;
+   this.user = user;
+   this.password = password;
+   this.initialCons = initialCons;
+   this.maxCons = maxCons;
+   this.block = block;
+   this.timeout = timeout;
 
-	// maxCons has precedence over initialCons
+   // maxCons has precedence over initialCons
         if (maxCons > 0 && maxCons < initialCons)
-	    initialCons = maxCons;
+       initialCons = maxCons;
 
-	// Create vectors large enough to store all the connections we make now.
-	free = new Vector(initialCons);
-	used = new Vector(initialCons);
+   // Create vectors large enough to store all the connections we make now.
+   free = new Vector(initialCons);
+   used = new Vector(initialCons);
 
-	// Create some connections.
-	while (numCons < initialCons){
-	    addConnection();
-	}
+   // Create some connections.
+   while (numCons < initialCons){
+       addConnection();
+   }
     }
   
     public static ConnectionPool getInstance(String url, String user, String password,
-			  int initialCons, int maxCons, boolean block,
-			  long timeout) throws SQLException {
-    	if(pool == null) pool = new ConnectionPool(url, user, password, initialCons, maxCons, block, timeout);
-		return pool;
-    	
+           int initialCons, int maxCons, boolean block,
+           long timeout) throws SQLException {
+       if(pool == null) pool = new ConnectionPool(url, user, password, initialCons, maxCons, block, timeout);
+      return pool;
+       
     }
 
     /**
      * Closes all unallocated <code>connections</code>, allocated
      * <code>connections</code> are marked for closing when they are released.
      *
-     * @see	  #releaseConnection
-     * @see	  java.sql.Connection#close
+     * @see     #releaseConnection
+     * @see     java.sql.Connection#close
      **/
     public synchronized void closeAll() {
 
-	// Close unallocated connections
-	Enumeration cons = ((Vector)free.clone()).elements();
-	while (cons.hasMoreElements()) {
-	    Connection con = (Connection)cons.nextElement();
+   // Close unallocated connections
+   Enumeration cons = ((Vector)free.clone()).elements();
+   while (cons.hasMoreElements()) {
+       Connection con = (Connection)cons.nextElement();
 
-	    free.removeElement(con);
-	    numCons--;
+       free.removeElement(con);
+       numCons--;
 
-	    try {
-		con.close();
-	    } catch (SQLException e) {
-		// The Connection appears to be broken anyway, so we will ignore it
-	    }
-	}
+       try {
+      con.close();
+       } catch (SQLException e) {
+      // The Connection appears to be broken anyway, so we will ignore it
+       }
+   }
 
-	// Move allocated connections to a list of connections that are closed
-	// when they are released.
-	cons = ((Vector)used.clone()).elements();
-	while (cons.hasMoreElements()) {
-	    Connection con = (Connection)cons.nextElement();
+   // Move allocated connections to a list of connections that are closed
+   // when they are released.
+   cons = ((Vector)used.clone()).elements();
+   while (cons.hasMoreElements()) {
+       Connection con = (Connection)cons.nextElement();
 
-	    used.removeElement(con);
+       used.removeElement(con);
        
-	}
+   }
     }
 
     /**
@@ -199,89 +199,89 @@ public final class ConnectionPool {
      * should wait for a <code>connection</code> to be release if the maximum
      * allowed are all in use.
      *
-     * @return	  The block property.
-     * @see	  #setBlock
-     * @see	  #getConnection
+     * @return     The block property.
+     * @see     #setBlock
+     * @see     #getConnection
      **/
     public boolean getBlock() {
-	return block;
+   return block;
     }
 
 
     /**
      * Gets a <code>Connection</code> from the pool.
      *
-     * @return	  A connection
+     * @return     A connection
      * @exception ConnectionPoolException if the maximum number of allowed
-     *		      connections are all in use, and, the "pool" is not
-     *		      blocking or the timeout expired when waiting.
+     *            connections are all in use, and, the "pool" is not
+     *            blocking or the timeout expired when waiting.
      * @exception SQLException if all existing connections are in use and a new
-     *		      one could not be created, this is the exception thrown
-     *		      by DriverManger when attempting to get a new connection.
-     * @see	  java.sql.DriverManager
+     *            one could not be created, this is the exception thrown
+     *            by DriverManger when attempting to get a new connection.
+     * @see     java.sql.DriverManager
      **/
     public Connection getConnection()
-	throws SQLException {
+   throws SQLException {
 
-	return getConnection(this.block, timeout);
+   return getConnection(this.block, timeout);
     }
 
 
     /**
      * Gets a <code>Connection</code> from the pool.
      *
-     * @param	  block		If a request for a connection should block until
-     *				a connection is released when none are available
-     *				and maxCons has been reached, overrides the
-     *				value specified at construction.
-     * @param	  timeout	Maximum time to wait for a connection to be
-     *				released when maxCons are in use, overrides the
-     *				values specified at construction.
-     * @return	  A connection
+     * @param     block      If a request for a connection should block until
+     *            a connection is released when none are available
+     *            and maxCons has been reached, overrides the
+     *            value specified at construction.
+     * @param     timeout   Maximum time to wait for a connection to be
+     *            released when maxCons are in use, overrides the
+     *            values specified at construction.
+     * @return     A connection
      * @exception ConnectionPoolException if the maximum number of allowed
-     *		      connections are all in use, and, the "pool" is not
-     *		      blocking or the timeout expired when waiting.
+     *            connections are all in use, and, the "pool" is not
+     *            blocking or the timeout expired when waiting.
      * @exception SQLException if all existing connections are in use and a new
-     *		      one could not be created, this is the exception thrown
-     *		      by DriverManger when attempting to get a new connection.
-     * @see	  java.sql.DriverManager
+     *            one could not be created, this is the exception thrown
+     *            by DriverManger when attempting to get a new connection.
+     * @see     java.sql.DriverManager
      **/
 public synchronized Connection getConnection(boolean block, long timeout)
 throws SQLException {
 
   if (free.isEmpty()) {
     
-    // None left, do we create more?    maxCons <= 0 : maxCons �������� ����.
+    // None left, do we create more?    maxCons <= 0 : maxCons              .
     if (maxCons <= 0 || numCons < maxCons) {
       addConnection();
     }
     else if (block) {
       try {
-	long start = System.currentTimeMillis();
-	do {
-	  wait(timeout);
-	  if (timeout > 0) {
-	    timeout -= System.currentTimeMillis() - start;
-	    if (timeout == 0) {
-	      timeout -= 1;
-	    }
-	  }
-	} while (timeout >= 0 && free.isEmpty() && maxCons > 0 && numCons >= maxCons);
+   long start = System.currentTimeMillis();
+   do {
+     wait(timeout);
+     if (timeout > 0) {
+       timeout -= System.currentTimeMillis() - start;
+       if (timeout == 0) {
+         timeout -= 1;
+       }
+     }
+   } while (timeout >= 0 && free.isEmpty() && maxCons > 0 && numCons >= maxCons);
       } catch (InterruptedException e) {
-	 }
+    }
       // Did anyone release a connection while we were waiting?
       if (free.isEmpty()) {
-	/*
-	 * OK, nothing on the free list, but someone may have
-	 * released a connection that they closed, so the free list
-	 * is empty but numCons is now < maxCons and we can create a
-	 * new connection.
-	 */
-	if (maxCons <= 0 || numCons < maxCons) {
-	  addConnection();
-	} else {
-	  throw new SQLException("Timeout waiting for a connection to be released");
-	}
+   /*
+    * OK, nothing on the free list, but someone may have
+    * released a connection that they closed, so the free list
+    * is empty but numCons is now < maxCons and we can create a
+    * new connection.
+    */
+   if (maxCons <= 0 || numCons < maxCons) {
+     addConnection();
+   } else {
+     throw new SQLException("Timeout waiting for a connection to be released");
+   }
       }
     } else {
       // No connections left and we don't wait for more.
@@ -306,21 +306,21 @@ return con;
      * <code>Connections</code> that can be allocated from the pool at any one
      * time.
      *
-     * @return	  The maxCons property.
-     * @see	  #getConnection
+     * @return     The maxCons property.
+     * @see     #getConnection
      **/
     public int getMaxCons() {
-	return maxCons;
+   return maxCons;
     }
 
 
     /**
      * Gets the reuseConnections property for the pool.
      *
-     * @see	  #setReuseConnections
+     * @see     #setReuseConnections
      **/
     public boolean getReuseConnections() {
-	return reuseCons;
+   return reuseCons;
     }
 
 
@@ -331,11 +331,11 @@ return con;
      * use when <code>getConnection()</code> is called and <code>block</code> is
      * true.
      *
-     * @return	  The timeout property.
-     * @see	  #setTimeout
+     * @return     The timeout property.
+     * @see     #setTimeout
      **/
     public long getTimeout() {
-	return timeout;
+   return timeout;
     }
 
 
@@ -345,10 +345,10 @@ return con;
      * This property is the url for <code>Connections</code> opened by this
      * pool.
      *
-     * @return	  The url property.
+     * @return     The url property.
      **/
     public String getUrl() {
-	return url;
+   return url;
     }
 
 
@@ -363,10 +363,10 @@ return con;
      * A rollback is performed on the <code>Connection</code> so if autoCommit
      * is false any changes made that have not been committed will be lost.
      *
-     * @param	  con	The Connection to put back in the pool.
+     * @param     con   The Connection to put back in the pool.
      * @exception UnownedConnectionException if the Connection did not come from
-     *		      this pool.
-     * @see	  #getConnection
+     *            this pool.
+     * @see     #getConnection
      **/
 public synchronized void releaseConnection(Connection con)
 throws SQLException {
@@ -379,16 +379,16 @@ throws SQLException {
     numCons--;
   } else {
     throw new SQLException("Connection " + con +
-					 " did not come from this ConnectionPool");
+                " did not come from this ConnectionPool");
   }
 
   try {
 
       if (reuseThisCon) {
-	free.addElement(con);
-	numCons++;
+   free.addElement(con);
+   numCons++;
       } else {
-	con.close();
+   con.close();
       }
     
 
@@ -419,11 +419,11 @@ throws SQLException {
      * Setting <code>block</code> to false will have no effect on any connection
      * requests that have already begin to wait for a connection.
      *
-     * @param	  block		The block property.
-     * @see	  #getBlock
+     * @param     block      The block property.
+     * @see     #getBlock
      **/
     public void setBlock(boolean block) {
-	this.block = block;
+   this.block = block;
     }
 
     /**
@@ -431,13 +431,13 @@ throws SQLException {
      * If this property is false then whenever a <code>Connection</code> is
      * released it will be closed.
      *
-     * @see	  #getReuseConnections
-     * @see	  #releaseConnection
-     * @see	  java.sql.Connection
-     * @see	  java.sql.Connection#close
+     * @see     #getReuseConnections
+     * @see     #releaseConnection
+     * @see     java.sql.Connection
+     * @see     java.sql.Connection#close
      **/
     public synchronized void setReuseConnections(boolean reuseCons) {
-	this.reuseCons = reuseCons;
+   this.reuseCons = reuseCons;
     }
 
 
@@ -451,11 +451,11 @@ throws SQLException {
      * <code>Connection</code> requests that have already begin to wait for a
      * <code>Connection</code>.
      *
-     * @return	  The timeout property.
-     * @see	  #getTimeout
+     * @return     The timeout property.
+     * @see     #getTimeout
      **/
     public void setTimeout(long timeout) {
-	this.timeout = timeout;
+   this.timeout = timeout;
     }
 
 
@@ -465,7 +465,7 @@ throws SQLException {
      * @exception SQLException if a connection could not be established.
      **/
     private void addConnection() throws SQLException {
-	free.addElement(getNewConnection());
+   free.addElement(getNewConnection());
     }
 
 
@@ -476,19 +476,18 @@ throws SQLException {
      **/
     private Connection getNewConnection() throws SQLException {
 
-	Connection con = null;
+   Connection con = null;
 
 System.out.println("About to connect to " + url);
  try {
-	  con = DriverManager.getConnection(url, user, password);
+     con = DriverManager.getConnection(url, user, password);
 }
  catch (Exception e) {
     e.printStackTrace();
  }
-	   
+      
         ++numCons;
-	return con;
+   return con;
     }
 
 }
-
