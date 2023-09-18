@@ -26,11 +26,9 @@
 		// 새로고침 방지
 		e.preventDefault();
 		if(getInputValue() == "") {
-			alert("실패");
+			alert("아이디를 입력해주세요");
 			idCheck.focus();
-		} else {
-			alert("성공");
-		}
+		} 
 	}
 	
 	button.addEventListener('click', blankCheck);
