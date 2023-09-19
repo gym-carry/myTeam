@@ -34,26 +34,26 @@
         </div>
         
     <main>
-        <form>
+        <form action="adWriteAction.jsp">
         <div class="title_wrapper">
             <div>
             제목
             </div>
-            <input type="text" /> 
+            <input name="boardTitle" type="text" /> 
         </div>
 
         <div class="writer_wrapper">
             <div>
             작성자
             </div>
-            <input type="text" /> 
+            <input name="userId" type="text" /> 
         </div>
 
         <div class="locate_wrapper">
             <div>
             지역
             </div>
-            <select>
+            <select name="local">
                 <option value="강남">강남</option>
                 <option value="관악">관악</option>
                 <option value="구로">구로</option>
@@ -68,14 +68,14 @@
             <div>
             지점명
             </div>
-            <input type="text" /> 
+            <input name="companyName" type="text" /> 
         </div>
 
         <div class="write_wrapper">
             <div>
-            지점명
+           	글 내용
             </div>
-            <textarea name="" placeholder="작성해주세요"></textarea>
+            <textarea name="boardContent" placeholder="작성해주세요"></textarea>
         </div>
 
             <input type="submit" value="등록하기">
