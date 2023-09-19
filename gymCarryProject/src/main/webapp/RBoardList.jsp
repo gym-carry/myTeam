@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.io.PrintWriter" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>home</title>
-<link rel="stylesheet" href="./styles/home.css">
-<title>메인화면</title>
+<link rel="stylesheet" href="./styles/RBoardList.css">
+<title>Insert title here</title>
 </head>
 <body>
 	<%
@@ -16,7 +15,6 @@
 			id = (String) session.getAttribute("id");
 		}
 	%>
-	<div id="wrapper">
 	    
 	    <header>
 		    <%
@@ -42,7 +40,7 @@
 	            <li>
 	                <a href="login.jsp"><%=id %>님</a>
 	            </li> 
-	            <li>
+   	            <li>
 	                <a href="logoutAction.jsp">로그아웃</a>
 	            </li> 
 	            <li>
@@ -72,20 +70,33 @@
 	        </ul>
 	
 	    </nav>
+<main>
+  <button type="button" onclick="location.href='RWrite.jsp'">글쓰기</button>
+  <table>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>작성자</th>
+        <th>지역</th>
+        <th>지점명</th>
+        <th>제목</th>
+        <th>작성일</th>
+        <th>조회수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>이로운</td>
+        <td>광진구</td>
+        <td>헬스보이짐</td>
+        <td>헬스보이짐 리뷰</td>
+        <td>23.01.01</td>
+        <td>5</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
 	
-	    <main class="main">
-	
-	        <a href="#">
-	            <img src="리뷰로고.svg" alt="리뷰게시판 로고">
-	        </a>
-	
-	        <a href="#">
-	            <img src="홍보로고.svg" alt="홍보게시판 로고">
-	        </a>   
-	    </main>
-	
-	 </div>
-
-
 </body>
 </html>
