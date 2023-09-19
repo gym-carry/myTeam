@@ -48,8 +48,7 @@
 				}else{
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('글쓰기에 실패하였습니다.')");
-					script.println("history.back()");
+					script.println("location.href = 'RBoardList.jsp'");
 					script.println("</script>");
 				}
 			}
