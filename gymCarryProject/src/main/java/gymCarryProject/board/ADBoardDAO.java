@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import gymCarryProject.ConnectionPool;
 
@@ -28,12 +30,13 @@ public class ADBoardDAO {
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
-		System.out.println(dto);
-		con = pool.getConnection();
+		PreparedStatement stmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
 				+ ", parent, viewcnt)" + "values(AD_BOARD_SEQ.NEXTVAL, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
-		PreparedStatement stmt = con.prepareStatement(sql);
-
+		int result = -1;
+		try {
+		con = pool.getConnection();
+		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dto.getUserId());
 		stmt.setString(2, dto.getLocal());
 		stmt.setString(3, dto.getCompanyName());
@@ -41,11 +44,82 @@ public class ADBoardDAO {
 		stmt.setString(5, dto.getBoardContent());
 		System.out.println(stmt.toString());
 
-		int result = stmt.executeUpdate();
+		result = stmt.executeUpdate();
 		System.out.println(result);
-		stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
 		pool.releaseConnection(con);
 		return result;
 	}
+	
+	public List<BoardDTO> selectAll() throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
+		ArrayList<BoardDTO> ls = new ArrayList();
+		
+		try {
+			con = pool.getConnection();
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				BoardDTO dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
+						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
+				
+				ls.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		pool.releaseConnection(con);
+		return ls;
+	}
 
+	public BoardDTO select(int num) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD  where num = ?";
+		BoardDTO dto = null;
+		try {
+			con = pool.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, num);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
+						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(rs != null) {
+				rs.close();
+			}
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		pool.releaseConnection(con);
+		return dto;
+	}
 }

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page import="gymCarryProject.board.*, java.util.*"%>
+ <jsp:useBean id="db" class="gymCarryProject.board.ADBoardDAO" scope="session" />
+ <jsp:useBean id="user" class="gymCarryProject.board.BoardDTO" scope="request" />  
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,6 +11,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
+<%
+	List<BoardDTO> ls = db.selectAll();
+%>        
+        
     </head>
     <body>
 
@@ -52,7 +59,7 @@
         <table>
             <thead>
                 <tr>
-              	    <th>번호</th>
+              	    <th><% %></th>
 		            <th>작성자</th>
 		            <th>지역</th>
 		            <th>지점명</th>
