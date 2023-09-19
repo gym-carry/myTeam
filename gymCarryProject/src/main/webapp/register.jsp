@@ -161,7 +161,6 @@
               
         </script>
         -->
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" defer>
         
         function checkInput(myform) {
@@ -175,22 +174,7 @@
         
         }
         
-        function doubleCheckId() {
-        	var id = $('#id').val();
-        	$.ajax({
-        		type: 'POST',
-        		url: './UserRegisterCheckServlet',
-        		data: {id:id},
-        		succerss: function(result) {
-        			$('#checkMessage').html('사용할 수 있는 아이디입니다.');
-        			$('#checkType').attr('class', 'modal-content panel-success');
-        		} else {
-        			$('#checkMessage').html('사용할 수 없는 아이디입니다.');
-        			$('#checkType').attr('class', 'modal-content panel-warning');
-        		}
-        		$('#checkModal').modal("show");
-        	})
-        }
+
            
 /*            function checkId(){
            	const id = document.getElementById("id");
@@ -236,7 +220,7 @@
         <div class="id_wrapper">
 
         <input class="input_field input_login" type="text" size="12" maxlength="12" name="id" placeholder="아이디"/>
-        <input class="reg_btn dc_btn" type="button" name="dc" value="중복확인" onclick="doubleCheckId()" />
+        <input class="reg_btn dc_btn" type="button" name="dc" value="중복확인" />
             
         </div>
         <input class="input_field input_login" type="password" name="pwd"  placeholder="비밀번호" />
@@ -249,24 +233,6 @@
         </div>
         <input class="reg_btn" type="submit" value="회원가입" />
      </form>
-     
-     <div class="modal fade" id="checkModal" tabindex="-1" role="dialog" aria-hidden="true">
-     	<div class="vertical-alignment-helper">
-     		<div id="checkType" class="modal-content panel-info">
-     			<div class="modal-header panel-heading">
-     				<button type="botton" class="close" data-dismiss="modal">
-     					<span aria-hidden="true">&time;</span>
-     					<span class="sr-only">Close</span>
-     				</button>
-     				<h4 class="modal-title">확인메시지</h4>
-     			</div>
-     			<div class="modal-body" id="checkMessage"></div>
-     			<div class="modal-footer">
-     				<button type="button" class="reg_btn dc_btn" data-dismiss="modal">확인</button>
-     			</div>
-     		</div>
-     	</div>
-     
-     </div>
+  
     </body>
 </html>

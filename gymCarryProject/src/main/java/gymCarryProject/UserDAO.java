@@ -108,36 +108,4 @@ public class UserDAO {
 		}
 	}
 
-	public int checkId(String id) throws SQLException {
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		String sql = "SELECT PWD FROM R_USER WHERE ID=?";
-		try {
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, id);
-			rs = stmt.executeQuery();
-			if (rs.next() || id.equals("") ) {
-				return 0;
-			} else {
-				return 1;
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-			try {
-				if (rs != null)
-					rs.close();
-				if (stmt != null)
-					stmt.close();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		}
-		return -1;
-
-	}
 }
