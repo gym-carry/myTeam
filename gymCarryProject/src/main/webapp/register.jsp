@@ -164,16 +164,54 @@
         <script type="text/javascript" defer>
         
         function checkInput(myform) {
-        	let result = true;
-        	if(!myform.name.value)  { result = false;}
-        	if(!myform.id.value)  { result = false;}
-        	if(!myform.pwd.value)  { result = false;}
-        	if(!myform.pwdC.value)  { result = false;}
-        	if(!myform.email.value)  { result = false;}
-        	if(!myform.phone.value)  { result = false;}
-        	alert(result);
-        	return result;
+        	if(!myform.name.value && !myform.id.value && !myform.pwd.value
+        		&& !myform.pwdC.value && !myform.email.value && !myform.phone.value) { 
+        		alert("입력 항목을 확인해주세요");
+        		return false;
+        		
+        	}
+        	return true;
+        
         }
+        
+
+           
+/*            function checkId(){
+           	const id = document.getElementById("id");
+           	
+           	if (checkAlphaNum(id)) {
+           		alert("영문 대소문자와 숫자만 입력가능합니다.");
+           		id.focus(); 
+           		id.value="";
+           		return false;
+           	} else if(!id.value == null) {
+           		alert("아이디를 입력해주세요");
+           		id.focus();
+           		return false;
+           	} else 
+           		return true;
+           }
+           
+           //대소문자 체크, 숫자체크
+           function checkAlphaNum(str) {
+           	
+           	for (let i = 0; i<str.length; i++ ) {
+           		console.log(str.charCodeAt(i));
+           	if(!(str.charCodeAt(i) > 47 && str.charCodeAt(i) < 58) && // numeric (0-9)
+           	   !(str.charCodeAt(i) > 64 && str.charCodeAt(i) < 91) && // upper alpha( A - Z )
+           	   !(str.charCodeAt(i) > 96 && str.charCodeAt(i) < 123)) { // lower alpha ( a - z )  
+           	   return false;
+           		}
+           	 }
+           	 return true;
+              }
+           } */
+           
+           function idCheck() {
+        	 window.open("idCheckForm.jsp", "중복확인 팝업", "width=400, height=350");
+           }
+        
+        
         </script>
     </head>
     <body>
@@ -181,7 +219,7 @@
         <input class="input_field input_name" type="text" name="name"  placeholder="이름"/>
         <div class="id_wrapper">
 
-        <input class="input_field input_login" type="text" name="id" placeholder="아이디"/>
+        <input class="input_field input_login" type="text" size="12" maxlength="12" name="id" placeholder="아이디"/>
         <input class="reg_btn dc_btn" type="button" name="dc" value="중복확인" />
             
         </div>
@@ -195,5 +233,6 @@
         </div>
         <input class="reg_btn" type="submit" value="회원가입" />
      </form>
+  
     </body>
 </html>
