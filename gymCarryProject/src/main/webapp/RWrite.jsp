@@ -8,48 +8,79 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <header>
-    <ul class="header_nav">
-        <li>
-            <a href="login.jsp">로그인</a>
-        </li> 
-
-        <li>
-            <a href="register.jsp">회원가입</a>
-        </li>
-
-        <li>
-            <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
-        </li>  
-    </ul> 
-
-
-    <div class="header_logo">
-        <img src="메인로고.svg" alt="짐캐리로고">
-    </div>
-</header>
+	<%
+		String id = null;
+		if(session.getAttribute("id") != null){
+			id = (String) session.getAttribute("id");
+		}
+	%>
+	    
+	    <header>
+		    <%
+		    	if(id == null){
+		    %>
+	        <ul class="header_nav">
+	            <li>
+	                <a href="login.jsp">로그인</a>
+	            </li> 
+	
+	            <li>
+	                <a href="register.jsp">회원가입</a>
+	            </li>
+	
+	            <li>
+	                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+	            </li>  
+	        </ul> 
+		    <%
+		    	} else {		    
+		    %>
+	        <ul class="header_nav">
+	            <li>
+	                <a href="login.jsp"><%=id %>님</a>
+	            </li> 
+   	            <li>
+	                <a href="logoutAction.jsp">로그아웃</a>
+	            </li> 
+	
+	            <li>
+	                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+	            </li>  
+	        </ul> 
+			<%
+		    	}
+			%>
+	
+	
+	        <div class="header_logo">
+	            <img src="메인로고.svg" alt="짐캐리로고">
+	        </div>
+	        
+	    </header>
 
 <main>
-  <form action="">
+  <form action="RWriteAction.jsp">
     <div class="title_wrapper">
       <div>
         제목
       </div>
-      <input type="text">
+      <input name="boardTitle" type="text">
     </div>
 
     <div class="writer_wrpper">
+   	<div>
+   		작성자
+   	</div>
       <div>
-        작성자
+        <%=id %>
       </div>
-      <input type="text">
     </div>
 
     <div class="locate_wrpper">
       <div>
         지역
       </div>
-      <select>
+      <select name="local">
         <option value="강남">강남</option>
         <option value="관악">관악</option>
         <option value="구로">구로</option>
@@ -64,14 +95,14 @@
       <div>
         지점명
       </div>
-      <input type="text">
+      <input name="companyName" type="text">
     </div>
 
     <div class="write_wrpper">
       <div>
-        작성자
+       	글쓰기
       </div>
-      <textarea name="" placeholder="작성해주세요"></textarea>
+      <textarea name="boardContent" placeholder="작성해주세요"></textarea>
     </div>
 
     <input type="submit" value="등록하기">
