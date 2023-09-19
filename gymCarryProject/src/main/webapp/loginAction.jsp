@@ -5,7 +5,7 @@
  <%@ page import="gymCarryProject.UserDAO" %>
  <% request.setCharacterEncoding("UTF-8"); %>
  <jsp:useBean id="db" class="gymCarryProject.UserDAO" scope="application" />
- <jsp:useBean id="user" class="gymCarryProject.UserDTO" scope="request" />
+ <jsp:useBean id="user" class="gymCarryProject.UserDTO" scope="page" />
  <jsp:setProperty name="user" property="id" />
  <jsp:setProperty name="user" property="pwd" />
  <jsp:setProperty property="*" name="user" />
@@ -17,11 +17,23 @@
 </head>
 <body>
 	<%
-
+		String id = null;
+		if(session.getAttribute("id") != null){
+			id = (String) session.getAttribute("id");
+		}
+		if(id != null){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('이미 로그인이 되어있습니다.')");
+			script.println("location.href = 'home.jsp'");
+			script.println("</script>");
+		}
+		
  		int result = db.login(user.getId(), user.getPwd());
 
 		System.out.println(result);
 		if(result == 1){
+			session.setAttribute("id", user.getId());
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href = 'home.jsp'");
@@ -49,9 +61,6 @@
 			script.println("</script>");
 
 		} 
-		
-		session.setAttribute("login", user);
-	 
 	%>
 </body>
 </html>
