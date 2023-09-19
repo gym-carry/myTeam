@@ -1,0 +1,57 @@
+@charset "UTF-8";
+    * {
+        box-sizing:border-box;
+    }
+
+    body{
+        margin: 0;
+    }
+
+    ul{
+        list-style-type: none;
+    }
+
+    a{
+        color: inherit;
+        text-decoration: none;
+    }
+
+    /*헤더*/
+    /*헤더 네비게이션*/
+    .header_nav {
+        display: flex;
+        position: absolute;
+        right: 0;
+        top: 0; 
+        gap: 10px;
+        margin-right: 20px;
+    }
+
+    .header_logo {
+        margin-top: 30px;
+        text-align: center;
+
+    }
+
+    /*메인*/
+    /*메인 네비게이션*/
+    .main_nav {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+        border-top:1px solid;
+        border-bottom:1px solid;
+        border-color: #1BBC9B;
+    }
+
+    .main_nav_li{
+        margin: 19px 0;
+        font-size: 20px;
+    }
+
+    /*메인*/
+    .main {
+        display: flex;
+        justify-content: space-around;
+    }
+
