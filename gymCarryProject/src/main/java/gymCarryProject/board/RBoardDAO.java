@@ -41,7 +41,7 @@ public class RBoardDAO {
 			return pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();	
-			}
+		}
 		return -1;
 	}
 	

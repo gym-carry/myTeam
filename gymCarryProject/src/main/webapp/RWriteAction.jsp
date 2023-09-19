@@ -4,11 +4,9 @@
  <%@ page import="gymCarryProject.board.RBoardDAO" %>
  <%@ page import="java.io.PrintWriter" %>
  <% request.setCharacterEncoding("UTF-8"); %>
- <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
+ <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="session" />
  <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="request" />
  <jsp:useBean id="login" class="gymCarryProject.UserDTO" scope="session" />
- <jsp:setProperty name="dto" property="boardTitle" />
- <jsp:setProperty name="dto" property="boardContent" />
  <jsp:setProperty property="*" name="dto" />
 <!DOCTYPE html>
 <html>
