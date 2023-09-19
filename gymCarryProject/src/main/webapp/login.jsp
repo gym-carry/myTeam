@@ -6,15 +6,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="login.css">
-  <!-- <script type="text/javascript" src="login.js" defer></script> -->
+  <script type="text/javascript" src="login.js" defer></script>
+  <style>
+
+  </style>
   <title>login</title>
 </head>
 <body>
-	<form class="login_form" name="myForm" action="loginAction.jsp" onsubmit="return onLoginSubmit(myForm)">
-      <input id="id_input" class="input_field input_login" type="text" name="id" placeholder="아이디">
-      <input id="pwd_input" class="input_field input_login" type="text" name="pwd" placeholder="비밀번호">
-      <input id="submit_btn" class="reg_btn" type="submit" value="로그인">
-      <!-- <div class="form_sub_wrpper">
+	<form id="form_input" class="login_form" name="myForm" action="loginAction.jsp">
+      <input id="id_input" class="input_field" type="text" name="id" placeholder="아이디">
+      <small id="id_error" class="error_message"></small>
+      <input id="pwd_input" class="input_field" type="password" name="pwd" placeholder="비밀번호">
+      <small id="pwd_error" class="error_message"></small>
+      <button id="submit_btn" class="reg_btn" type="submit">로그인</button>
+      <div class="form_sub_wrpper">
           <a class="a_link" href="/register.jsp">회원가입</a>
         <ul class="form_ul">
           <li class="form_li">
@@ -24,18 +29,7 @@
             <a href="#">비밀번호 찾기</a>
           </li>
         </ul>
-      </div>  -->
+      </div>
     </form>
-    <script type="text/javascript">
-    function onLoginSubmit(myForm){
-    	let result = true;
-    	if(!myform.id.value)  { result = false;}
-    	if(!myform.pwd.value)  { result = false;}
-    	alert(result);
-    	return result;
-    }
-    
-    
-    </script>
 </body>
 </html>

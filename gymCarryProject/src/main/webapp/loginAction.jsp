@@ -17,25 +17,27 @@
 </head>
 <body>
 	<%
-  		int result = db.login(user.getId(), user.getPwd());
+
+ 		int result = db.login(user.getId(), user.getPwd());
+
 		System.out.println(result);
 		if(result == 1){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("location.href = 'main.html'");
+			script.println("location.href = 'home.jsp'");
 			script.println("</script>");
 		}
 		else if(result == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('비밀번호가 틀립니다.')");
+			script.println("alert('올바른 비밀번호를 입력해주세요.')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
 		else if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert('존재하지 않는 아이디입니다.')");
+			script.println("alert('올바른 아이디를 입력헤주세요')");
 			script.println("history.back()");
 			script.println("</script>");
 		}
@@ -45,14 +47,10 @@
 			script.println("alert('데이터베이스 오류가 발생헀습니다.')");
 			script.println("history.back()");
 			script.println("</script>");
-		}  
-		 
-/*   		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
-		System.out.println(id + "\n" + pwd + "\n");
 
-		user = db.select(user);
-		System.out.println("select :: " + user);  */
+		} 
+		
+		session.setAttribute("login", user);
 	 
 	%>
 </body>
