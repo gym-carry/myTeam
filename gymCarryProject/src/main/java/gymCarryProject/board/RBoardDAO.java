@@ -30,7 +30,7 @@ public class RBoardDAO {
 	public int write(BoardDTO boardDTO) throws SQLException {
 		con = pool.getConnection();
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
-	            + ", parent, viewcnt)" + "values(AD_BOARD_SEQ.NEXTVAL, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
+	            + ", parent, viewcnt)" + "values(R_BOARD_SEQ.NEXTVAL, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
 		try {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, boardDTO.getUserId());
