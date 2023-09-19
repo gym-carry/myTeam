@@ -16,8 +16,8 @@ public class ADBoardDAO {
 	public ADBoardDAO() throws ClassNotFoundException {
 		try {
 			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "hr";
-			String dbPWD = "hr";
+			String dbID = "scott";
+			String dbPWD = "tiger";
 			Class.forName("oracle.jdbc.OracleDriver");
 
 			pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 4, true, 500);
