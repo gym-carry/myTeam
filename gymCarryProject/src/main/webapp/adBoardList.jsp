@@ -48,6 +48,7 @@
     </nav>
 
     <main>
+    	<button type="button" onclick="location.href='adWrite.jsp'">글쓰기</button>
         <table>
             <thead>
                 <tr>
