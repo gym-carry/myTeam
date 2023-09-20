@@ -67,14 +67,28 @@ public class RBoardDAO {
 	}
 	
 	// 특정한 페이지에 있는 게시글들을 10개씩 보여주기
-	public ArrayList<BoardDTO> getList(int pageNumber){
-		String sql = "SELECT * FROM R_BOARD WHERE < ? ORDER BY BOARD_NO DESC LIMIT 10";
-		
-		
-		
-		
-		
-		return null;
+	public ArrayList<BoardDTO> getList(int pageNumber) throws SQLException{
+		con = pool.getConnection();
+		String sql = "SELECT * FROM (SELECT * FROM R_BOARD WHERE BOARD_NO < ? ORDER BY BOARD_NO DESC) WHERE ROWNUM <= 10;";
+		ArrayList<BoardDTO> list = new ArrayList<>();
+		try {
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setBoardNum(rs.getInt(1));
+				dto.setUserId(rs.getString(2));
+				dto.setLocal(rs.getString(3));
+				dto.setCompanyName(rs.getString(4));
+				dto.setBoardTitle(rs.getString(5));
+				dto.setBoardRegdate(rs.getDate(6));
+				dto.setViewCnt(rs.getInt(7));
+				list.add(dto);
+			}
+		}catch(Exception e) {
+		e.printStackTrace();
 	}
-	
+		return list;
+	}
 }
