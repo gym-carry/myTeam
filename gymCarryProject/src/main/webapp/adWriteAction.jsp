@@ -10,11 +10,12 @@
 <meta charset="UTF-8">
 <title>adWriteAction.jsp</title>
 <%
-	int result = db.insert(user);
-	
+		int result = db.insert(user);
 %>
 </head>
 <body>
+<%= result %>
 <%=session.getAttribute("id")%>님 게시글 등록이 완료되었습니다.
+<button type="button" onclick="location.href='adBoardList.jsp'">목록보기</button>
 </body>
 </html>

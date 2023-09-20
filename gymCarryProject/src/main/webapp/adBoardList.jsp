@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ page import="gymCarryProject.board.*, java.util.*"%>
- <jsp:useBean id="db" class="gymCarryProject.board.ADBoardDAO" scope="session" />
+ <jsp:useBean id="db" class="gymCarryProject.board.ADBoardDAO" scope="session"/>
  <jsp:useBean id="user" class="gymCarryProject.board.BoardDTO" scope="request" />  
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
 		<link rel="stylesheet" href="./styles/adBoardList.css">
         <title></title>
@@ -101,7 +101,7 @@
                   <td><%= dto.getUserId() %></td>
                   <td><%= dto.getLocal() %></td>
                   <td><%= dto.getCompanyName() %></td>
-                  <td><%= dto.getBoardTitle() %></td>
+                  <td><a href="adBoardDetail.jsp?num=<%= dto.getBoardNum() %>"><%= dto.getBoardTitle() %></a></td>
                   <td><%= dto.getBoardRegdate() %></td>
                   <td><%= dto.getViewCnt() %></td>
               </tr>

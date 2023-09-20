@@ -30,6 +30,7 @@ public class ADBoardDAO {
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
+		System.out.println(dto.toString());
 		PreparedStatement stmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
 				+ ", parent, viewcnt)" + "values(AD_BOARD_SEQ.NEXTVAL, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
@@ -56,7 +57,6 @@ public class ADBoardDAO {
 				con.close();
 			}
 		}
-		pool.releaseConnection(con);
 		return result;
 	}
 	
@@ -89,23 +89,24 @@ public class ADBoardDAO {
 				con.close();
 			}
 		}
-		pool.releaseConnection(con);
 		return ls;
 	}
 
 	public BoardDTO select(int num) throws SQLException {
 		PreparedStatement stmt = null;
-		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD  where num = ?";
+		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD  where board_no =?";
 		BoardDTO dto = null;
 		try {
 			con = pool.getConnection();
 			stmt = con.prepareStatement(sql);
 			stmt.setInt(1, num);
+			System.out.println(stmt.toString());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
 				dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
 						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
-				
+				System.out.println(dto);
+				return dto;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -120,7 +121,6 @@ public class ADBoardDAO {
 				con.close();
 			}
 		}
-		pool.releaseConnection(con);
 		return dto;
 	}
 }

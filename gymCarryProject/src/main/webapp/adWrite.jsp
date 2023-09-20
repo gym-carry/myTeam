@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
     <style>
 
@@ -74,7 +74,7 @@
             <div>
             작성자
             </div>
-            <input name="userId" value="<%= id %>" type="text" disabled /> 
+            <input name="userId" value=<%= id %> type="text" /> 
         </div>
 
         <div class="locate_wrapper">
