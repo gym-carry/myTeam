@@ -12,8 +12,17 @@
         <link href="./styles/adWrite.css" rel="stylesheet">
     </head>
     <body>
-            <header>
+   <%
+    	String id = null;
+    	if(session.getAttribute("id") != null) {
+    		id = (String) session.getAttribute("id");
+    	}
+    %>
 
+        <header>
+<%
+	if(id == null) {
+%>
         <ul class="header_nav">
             <li>
                 <a href="login.jsp">로그인</a>
@@ -27,6 +36,25 @@
                 <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
             </li>  
         </ul> 
+ <%
+	}	else {
+ %>       
+                <ul class="header_nav">
+            <li>
+                <a href="login.jsp"><%= id %>님</a>
+            </li> 
+
+            <li>
+                <a href="logoutAction.jsp">로그아웃</a>
+            </li>
+
+            <li>
+                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+            </li>  
+        </ul>
+<% 
+ 	}
+%>
 
 
         <div class="header_logo">
@@ -46,7 +74,7 @@
             <div>
             작성자
             </div>
-            <input name="userId" type="text" /> 
+            <input name="userId" value="<%= id %>" type="text" disabled /> 
         </div>
 
         <div class="locate_wrapper">

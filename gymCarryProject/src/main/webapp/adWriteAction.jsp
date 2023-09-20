@@ -15,6 +15,6 @@
 %>
 </head>
 <body>
-<%=user.getUserId()%>님 게시글 등록이 완료되었습니다.
+<%=session.getAttribute("id")%>님 게시글 등록이 완료되었습니다.
 </body>
 </html>

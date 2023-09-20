@@ -60,10 +60,11 @@ public class ADBoardDAO {
 		return result;
 	}
 	
-	public List<BoardDTO> selectAll() throws SQLException {
+	public ArrayList<BoardDTO> selectAll() throws SQLException {
 		PreparedStatement stmt = null;
 		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
 		ArrayList<BoardDTO> ls = new ArrayList();
+		System.out.println(ls.toString());
 		
 		try {
 			con = pool.getConnection();

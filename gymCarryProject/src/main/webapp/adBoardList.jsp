@@ -10,16 +10,21 @@
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-<%
-	List<BoardDTO> ls = db.selectAll();
-%>        
+        <link href="css/style.css" rel="stylesheet">  
         
     </head>
     <body>
+    <%
+    	String id = null;
+    	if(session.getAttribute("id") != null) {
+    		id = (String) session.getAttribute("id");
+    	}
+    %>
 
         <header>
-
+<%
+	if(id == null) {
+%>
         <ul class="header_nav">
             <li>
                 <a href="login.jsp">로그인</a>
@@ -33,7 +38,25 @@
                 <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
             </li>  
         </ul> 
+ <%
+	}	else {
+ %>       
+                <ul class="header_nav">
+            <li>
+                <a href="login.jsp"><%= id %>님</a>
+            </li> 
 
+            <li>
+                <a href="logoutAction.jsp">로그아웃</a>
+            </li>
+
+            <li>
+                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+            </li>  
+        </ul>
+<% 
+ 	}
+%>
 
         <div class="header_logo">
             <img src="메인로고.svg" alt="짐캐리로고">
@@ -59,7 +82,7 @@
         <table>
             <thead>
                 <tr>
-              	    <th><% %></th>
+              	    <th>번호</th>
 		            <th>작성자</th>
 		            <th>지역</th>
 		            <th>지점명</th>
@@ -70,14 +93,21 @@
             </thead>
             <tbody>
               <tr>
-                  <td>1</td>
-                  <td>hello</td>
-                  <td>관악구</td>
-                  <td>짐박스</td>
-                  <td>짐박스 3호점 홍보</td>
-                  <td>2</td>
-                  <td>1</td>
-              </tr>  
+<%
+	ArrayList<BoardDTO> ls = db.selectAll();
+	for (BoardDTO dto : ls) { 
+%>    
+                  <td><%= dto.getBoardNum() %></td>
+                  <td><%= dto.getUserId() %></td>
+                  <td><%= dto.getLocal() %></td>
+                  <td><%= dto.getCompanyName() %></td>
+                  <td><%= dto.getBoardTitle() %></td>
+                  <td><%= dto.getBoardRegdate() %></td>
+                  <td><%= dto.getViewCnt() %></td>
+              </tr>
+              <%
+	}
+              %>  
             </tbody>
         </table>
     </main>
