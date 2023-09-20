@@ -34,7 +34,10 @@ public class RBoardDAO {
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				return rs.getInt(1) + 1;
+				int result = rs.getInt(1) + 1;
+				return result;
+			}else {
+				return 1;
 			}
 		}catch(Exception e){
 				e.printStackTrace(); 
