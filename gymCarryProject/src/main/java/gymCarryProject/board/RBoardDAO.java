@@ -104,13 +104,13 @@ public class RBoardDAO {
 		return list;
 	}
 	
-	public BoardDTO getBoard(int BoardNum) throws SQLException {
+	public BoardDTO getBoard(int boardNum) throws SQLException {
 		con = pool.getConnection();
-		String sql = "SELECT * FROM R_BOARD WHERE BOARD_NO = ?"; 
+		String sql = "SELECT board_no, id, local, company_name, board_title, board_content ,board_regdate, viewcnt FROM R_BOARD WHERE BOARD_NO = ?"; 
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, BoardNum);
+			pstmt.setInt(1, boardNum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				BoardDTO dto = new BoardDTO();
@@ -119,8 +119,9 @@ public class RBoardDAO {
 				dto.setLocal(rs.getString(3));
 				dto.setCompanyName(rs.getString(4));
 				dto.setBoardTitle(rs.getString(5));
-				dto.setBoardRegdate(rs.getDate(6));
-				dto.setViewCnt(rs.getInt(7));
+				dto.setBoardContent(rs.getString(6));
+				dto.setBoardRegdate(rs.getDate(7));
+				dto.setViewCnt(rs.getInt(8));
 				return dto;
 			}
 		}catch(Exception e) {
