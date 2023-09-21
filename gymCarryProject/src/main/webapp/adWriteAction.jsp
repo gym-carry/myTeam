@@ -26,6 +26,15 @@
 			script.println("location.href='login.jsp'");
 			script.println("</script>");
 		}
+		
+		if(user.getBoardTitle() == null &&user.getCompanyName() == null 
+		   && user.getBoardTitle() == null) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('모든 항목들을 입력해주세요')");
+			script.println("history.back()");
+			script.println("</script>");
+		} else {		
 		int result = db.insert(user);
 		
 		if (result == 1) {
@@ -37,12 +46,12 @@
 		} else if (result == -1 ) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
-			script.println("alert( '게시글 등록내용을 확인해주세요.')");
-			script.println("history.back()");
+			script.println("alert( '게시물을 다시 등록해주세요.')");
+			script.println("location.href='adBoardList.jsp'");
 			script.println("</script>");
 		}
+		
+		}
 %>
-
-        <button type="button" onclick="location.href='adBoardList.jsp'">목록보기</button>
 </body>
 </html>
