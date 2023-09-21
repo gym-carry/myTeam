@@ -4,11 +4,9 @@
  <%@ page import="gymCarryProject.board.RBoardDAO" %>
  <%@ page import="java.io.PrintWriter" %>
  <% request.setCharacterEncoding("UTF-8"); %>
- <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
+ <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="session" />
  <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="request" />
  <jsp:useBean id="login" class="gymCarryProject.UserDTO" scope="session" />
- <jsp:setProperty name="dto" property="boardTitle" />
- <jsp:setProperty name="dto" property="boardContent" />
  <jsp:setProperty property="*" name="dto" />
 <!DOCTYPE html>
 <html>
@@ -48,8 +46,7 @@
 				}else{
 					PrintWriter script = response.getWriter();
 					script.println("<script>");
-					script.println("alert('글쓰기에 실패하였습니다.')");
-					script.println("history.back()");
+					script.println("location.href = 'RBoardList.jsp'");
 					script.println("</script>");
 				}
 			}
