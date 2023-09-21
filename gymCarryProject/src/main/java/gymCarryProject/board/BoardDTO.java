@@ -15,6 +15,20 @@ public class BoardDTO {
 	private int viewCnt;
 	
 	public BoardDTO() {}
+	
+	public BoardDTO(int boardNum, String userId, String local, String companyName, String boardTitle,
+			String boardContent, Date boardRegdate, int viewCnt) {
+		super();
+		this.boardNum = boardNum;
+		this.userId = userId;
+		this.local = local;
+		this.companyName = companyName;
+		this.boardTitle = boardTitle;
+		this.boardContent = boardContent;
+		this.boardRegdate = boardRegdate;
+		this.viewCnt = viewCnt;
+	}
+
 	public BoardDTO(int boardNum, String userId, String local, String companyName, String boardTitle,
 			String boardContent, Date boardRegdate, int parent, int viewCnt) {
 		super();

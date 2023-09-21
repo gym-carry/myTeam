@@ -76,7 +76,7 @@
 	                <a href="RBoardList.jsp">리뷰</a>
 	            </li>
 	            <li class="main_nav_li">
-	                <a href="">홍보</a></li>
+	                <a href="adBoardList.jsp">홍보</a></li>
 	        </ul>
 	
 	    </nav>
