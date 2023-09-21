@@ -77,8 +77,14 @@
 
     </nav>
 
-    <main>
-    	<button type="button" onclick="location.href='adWrite.jsp'">글쓰기</button>
+    <main class="main">
+    	<select class="filter filter_select" name="sort" id="sort">
+    		<option value="조회수">조회수</option>
+    		<option value="최근글">최근글</option>
+    	</select>
+    	<input class="filter search_input" type="text" name="serchInput" placeholder="검색어 입력" />
+    	<button class="filter search_btn" type="button">검색</button>
+    	<button type="button" class="write_btn"onclick="location.href='adWrite.jsp'">글쓰기</button>
         <table>
             <thead>
                 <tr>

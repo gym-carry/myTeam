@@ -1,5 +1,5 @@
 @charset "UTF-8";
-        * {
+    * {
         box-sizing:border-box;
     }
 
@@ -14,6 +14,18 @@
     a{
         color: inherit;
         text-decoration: none;
+    }
+    
+    /*테이블*/
+    /*테이블 전체*/
+    table {
+    	width: 100%;
+        border: 1px solid #bcbcbc;
+        margin-top: 20px;
+    }
+    
+    td {
+     text-align : center;
     }
 
     /*헤더*/
@@ -35,6 +47,9 @@
     }
 
     /*메인*/
+    .main{
+    	position: relative;
+    }
     /*메인 네비게이션*/
     .main_nav {
         display: flex;
@@ -54,8 +69,30 @@
         color:#A52F59;
     }
 
-    /*테이블*/
-    /*테이블 전체*/
-    table {
-        width: 100%;
+    /* 글쓰기 버튼 */
+    .write_btn{
+    	position : absolute;
+    	top: 0;
+    	right: 0;
+    	margin-right: 10px;
+    	height: 23px;
+    }
+    
+    .filter{
+    	margin: 0 0 0 10px;
+    	height: 23px;
+    }
+    
+    .search_input {
+    	width: 300px;
+  
+    	
+    }
+    
+    .search_btn{
+
+    }
+    
+    .filter_select{
+ 		margin-right: 10px;
     }
