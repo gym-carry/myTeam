@@ -60,7 +60,7 @@
         <div class="header_logo">
             <img src="메인로고.svg" alt="짐캐리로고">
         </div>
-        
+  
     <main>
         <form action="adWriteAction.jsp">
         <div class="title_wrapper">
@@ -110,11 +110,8 @@
             <button type="button" onclick="location.href='adBoardList.jsp'">
             	취소하기
             </button>
-        </form>
-       
-
+        </form>       
     </main>
-
 
     </header>
     </body>
