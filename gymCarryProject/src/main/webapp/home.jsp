@@ -85,33 +85,5 @@
 	    </main>
 	
 	 </div>
-        
-
-    <nav>
-        
-        <ul class="main_nav">
-            <li class="main_nav_li">
-                <a href="">리뷰</a>
-            </li>
-            <li class="main_nav_li">
-                <a href="adBoardList.jsp">홍보</a></li>
-        </ul>
-
-    </nav>
-
-    <main class="main">
-
-        <a href="#">
-            <img src="리뷰로고.svg" alt="리뷰게시판 로고">
-        </a>
-
-        <a href="#">
-            <img src="홍보로고.svg" alt="홍보게시판 로고">
-        </a>   
-    </main>
-
-
-
-
 </body>
 </html>
