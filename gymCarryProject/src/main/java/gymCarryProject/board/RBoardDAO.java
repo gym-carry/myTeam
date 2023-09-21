@@ -104,5 +104,41 @@ public class RBoardDAO {
 		return list;
 	}
 	
+	public BoardDTO getBoard(int BoardNum) throws SQLException {
+		con = pool.getConnection();
+		String sql = "SELECT * FROM R_BOARD WHERE BOARD_NO = ?"; 
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, BoardNum);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setBoardNum(rs.getInt(1));
+				dto.setUserId(rs.getString(2));
+				dto.setLocal(rs.getString(3));
+				dto.setCompanyName(rs.getString(4));
+				dto.setBoardTitle(rs.getString(5));
+				dto.setBoardRegdate(rs.getDate(6));
+				dto.setViewCnt(rs.getInt(7));
+				return dto;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+	        // ResultSet, PreparedStatement, Connection 등의 리소스를 반환
+	        if (rs != null) {
+	            rs.close();
+	        }
+	        if (pstmt != null) {
+	            pstmt.close();
+	        }
+	        if (con != null) {
+	            con.close();
+	        }
+	    }
+		return null;
+	}
+	
 	
 }

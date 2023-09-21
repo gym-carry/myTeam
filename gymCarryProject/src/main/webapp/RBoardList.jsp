@@ -105,7 +105,7 @@
 		        <td><%= list.get(i).getLocal() %></td>
 		        <td><%= list.get(i).getCompanyName() %></td>
 		        <td>
-		        	<a href="view.jsp?num=<%= list.get(i).getBoardNum() %>">		        	
+		        	<a href="RBoardDetail.jsp?num=<%= list.get(i).getBoardNum() %>">		        	
 		        		<%= list.get(i).getBoardTitle() %>
 		        	</a>
 		        </td>
