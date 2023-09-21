@@ -72,7 +72,7 @@
    		작성자
    	</div>
       <div>
-        <%=id %>
+      	<input name="userId" type="text" value="<%=id %>">
       </div>
     </div>
 
