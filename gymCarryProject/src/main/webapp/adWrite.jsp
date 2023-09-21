@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
     <style>
 
@@ -12,8 +12,17 @@
         <link href="./styles/adWrite.css" rel="stylesheet">
     </head>
     <body>
-            <header>
+   <%
+    	String id = null;
+    	if(session.getAttribute("id") != null) {
+    		id = (String) session.getAttribute("id");
+    	}
+    %>
 
+        <header>
+<%
+	if(id == null) {
+%>
         <ul class="header_nav">
             <li>
                 <a href="login.jsp">로그인</a>
@@ -27,12 +36,31 @@
                 <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
             </li>  
         </ul> 
+ <%
+	}	else {
+ %>       
+                <ul class="header_nav">
+            <li>
+                <a href="login.jsp"><%= id %>님</a>
+            </li> 
+
+            <li>
+                <a href="logoutAction.jsp">로그아웃</a>
+            </li>
+
+            <li>
+                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+            </li>  
+        </ul>
+<% 
+ 	}
+%>
 
 
         <div class="header_logo">
             <img src="메인로고.svg" alt="짐캐리로고">
         </div>
-        
+  
     <main>
         <form action="adWriteAction.jsp">
         <div class="title_wrapper">
@@ -46,7 +74,7 @@
             <div>
             작성자
             </div>
-            <input name="userId" type="text" /> 
+            <input name="userId" value=<%= id %> type="text" /> 
         </div>
 
         <div class="locate_wrapper">
@@ -82,11 +110,8 @@
             <button type="button" onclick="location.href='adBoardList.jsp'">
             	취소하기
             </button>
-        </form>
-       
-
+        </form>       
     </main>
-
 
     </header>
     </body>

@@ -1,18 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page import="gymCarryProject.board.*, java.util.*"%>
+ <jsp:useBean id="db" class="gymCarryProject.board.ADBoardDAO" scope="session"/>
+ <jsp:useBean id="user" class="gymCarryProject.board.BoardDTO" scope="request" />  
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     <head>
 		<link rel="stylesheet" href="./styles/adBoardList.css">
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">  
+        
     </head>
     <body>
+    <%
+    	String id = null;
+    	if(session.getAttribute("id") != null) {
+    		id = (String) session.getAttribute("id");
+    	}
+    %>
 
         <header>
-
+<%
+	if(id == null) {
+%>
         <ul class="header_nav">
             <li>
                 <a href="login.jsp">로그인</a>
@@ -26,7 +38,25 @@
                 <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
             </li>  
         </ul> 
+ <%
+	}	else {
+ %>       
+                <ul class="header_nav">
+            <li>
+                <a href="login.jsp"><%= id %>님</a>
+            </li> 
 
+            <li>
+                <a href="logoutAction.jsp">로그아웃</a>
+            </li>
+
+            <li>
+                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+            </li>  
+        </ul>
+<% 
+ 	}
+%>
 
         <div class="header_logo">
             <img src="메인로고.svg" alt="짐캐리로고">
@@ -63,14 +93,21 @@
             </thead>
             <tbody>
               <tr>
-                  <td>1</td>
-                  <td>hello</td>
-                  <td>관악구</td>
-                  <td>짐박스</td>
-                  <td>짐박스 3호점 홍보</td>
-                  <td>2</td>
-                  <td>1</td>
-              </tr>  
+<%
+	ArrayList<BoardDTO> ls = db.selectAll();
+	for (BoardDTO dto : ls) { 
+%>    
+                  <td><%= dto.getBoardNum() %></td>
+                  <td><%= dto.getUserId() %></td>
+                  <td><%= dto.getLocal() %></td>
+                  <td><%= dto.getCompanyName() %></td>
+                  <td><a href="adBoardDetail.jsp?num=<%= dto.getBoardNum() %>"><%= dto.getBoardTitle() %></a></td>
+                  <td><%= dto.getBoardRegdate() %></td>
+                  <td><%= dto.getViewCnt() %></td>
+              </tr>
+              <%
+	}
+              %>  
             </tbody>
         </table>
     </main>

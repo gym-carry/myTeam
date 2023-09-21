@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter" %>
+<%@ page import="gymCarryProject.*, java.util.Date"%>
+<%@ page import="gymCarryProject.board.RBoardDAO"%>
+<%@ page import="gymCarryProject.board.BoardDTO"%>
+<%@ page import="java.util.ArrayList"%>
+ <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
+ <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="page" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +20,10 @@
 		if(session.getAttribute("id") != null){
 			id = (String) session.getAttribute("id");
 		}
+/* 		int pageNumber = 1;
+		if(request.getParameter("pageNumber") != null){
+			pageNumber = Integer.parseInt(request.getParameter("pageNumber"));
+		}  */
 	%>
 	    
 	    <header>
@@ -66,7 +76,7 @@
 	                <a href="RBoardList.jsp">리뷰</a>
 	            </li>
 	            <li class="main_nav_li">
-	                <a href="">홍보</a></li>
+	                <a href="adBoardList.jsp">홍보</a></li>
 	        </ul>
 	
 	    </nav>
@@ -85,15 +95,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>이로운</td>
-        <td>광진구</td>
-        <td>헬스보이짐</td>
-        <td>헬스보이짐 리뷰</td>
-        <td>23.01.01</td>
-        <td>5</td>
-      </tr>
+	    <%
+	    	ArrayList<BoardDTO> list = dao.getList();
+	    	for(int i = 0 ; i < list.size() ; i++){
+   		%>
+	 		<tr>
+		        <td><%= list.get(i).getBoardNum() %></td>
+		        <td><%= list.get(i).getUserId() %></td>
+		        <td><%= list.get(i).getLocal() %></td>
+		        <td><%= list.get(i).getCompanyName() %></td>
+		        <td>
+		        	<a href="RBoardDetail.jsp?num=<%= list.get(i).getBoardNum() %>">		        	
+		        		<%= list.get(i).getBoardTitle() %>
+		        	</a>
+		        </td>
+		        <td><%= list.get(i).getBoardRegdate() %></td>
+		        <td><%= list.get(i).getViewCnt() %></td>
+	      	</tr>
+   		<%
+	    	}
+	    %>
+
     </tbody>
   </table>
 </main>
