@@ -113,6 +113,7 @@ public class RBoardDAO {
 			pstmt.setInt(1, boardNum);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
+				upViewCnt(boardNum);
 				BoardDTO dto = new BoardDTO();
 				dto.setBoardNum(rs.getInt(1));
 				dto.setUserId(rs.getString(2));
@@ -140,6 +141,28 @@ public class RBoardDAO {
 	    }
 		return null;
 	}
+	
+	   public int upViewCnt (int num) throws SQLException {
+		      PreparedStatement stmt = null;
+		      String sql ="update r_board set viewcnt = viewcnt+1 where board_no=?";
+		      int result = -1;
+		      try {
+		         con = pool.getConnection();
+		         stmt = con.prepareStatement(sql);
+		         stmt.setInt(1, num);
+		         result = stmt.executeUpdate();
+		      } catch (SQLException e) {
+		         e.printStackTrace();
+		      } finally {
+		         if(stmt != null) {
+		            stmt.close();
+		         }
+		         if(con != null) {
+		            con.close();
+		         }
+		      }
+		      return result; // 조회수 상승
+		   }
 	
 	
 }

@@ -6,7 +6,7 @@
 <%@ page import="gymCarryProject.board.BoardDTO"%>
 <%@ page import="java.util.ArrayList"%>
  <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
- <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="page" />
+ <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
