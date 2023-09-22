@@ -6,7 +6,7 @@
 <%@ page import="gymCarryProject.board.BoardDTO"%>
 <%@ page import="java.util.ArrayList"%>
  <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
- <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="page" />
+ <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,19 +80,26 @@
 	        </ul>
 	
 	    </nav>
-<main>
-  <button type="button" onclick="location.href='RWrite.jsp'">글쓰기</button>
+<main class="main">
+
+	<select class="filter filter_select" name="sort" id="sort">
+    <option value="조회수">조회수</option>
+    <option value="최근글">최근글</option>
+  </select>
+  <input class="filter search_input" type="text" name="searchInput" placeholder="검색어 입력">
+  <button class="filter search_btn" type="button">검색</button>
+  <button class="write_btn" type="button" onclick="location.href='RWrite.jsp'">글쓰기</button>
   <table>
     <thead>
-      <tr>
-        <th>번호</th>
-        <th>작성자</th>
-        <th>지역</th>
-        <th>지점명</th>
-        <th>제목</th>
-        <th>작성일</th>
-        <th>조회수</th>
-      </tr>
+    <tr>
+      <th>번호</th>
+      <th>작성자</th>
+      <th style="padding : 8px 10px 8px 10px">지역</th>
+      <th style="padding : 0 20px 0 20px">지점명</th>
+      <th style="padding : 0 90px 0 90px">제목</th>
+      <th>작성일</th>
+      <th>조회수</th>
+    </tr>
     </thead>
     <tbody>
 	    <%

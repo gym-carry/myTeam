@@ -59,57 +59,56 @@
 	    </header>
 
 <main>
+  <h1>헬스장 리뷰</h1>
   <form action="RWriteAction.jsp">
-    <div class="title_wrapper">
-      <div>
-        제목
-      </div>
-      <input name="boardTitle" type="text">
-    </div>
+     <!-- 등록버튼 -->
+    <input class="button submit_btn" type="submit" value="등록하기">
 
-    <div class="writer_wrpper">
-   	<div>
-   		작성자
-   	</div>
-      <div>
-      	<input name="userId" type="text" value="<%=id %>">
-      </div>
-    </div>
-
-    <div class="locate_wrpper">
-      <div>
-        지역
-      </div>
-      <select name="local">
-        <option value="강남">강남</option>
-        <option value="관악">관악</option>
-        <option value="구로">구로</option>
-        <option value="마포">마포</option>
-        <option value="송파">송파</option>
-        <option value="영등">영등</option>
-        <option value="용산">용산</option>
-      </select>
-    </div>
-
-    <div class="company_wrpper">
-      <div>
-        지점명
-      </div>
-      <input name="companyName" type="text">
-    </div>
-
-    <div class="write_wrpper">
-      <div>
-       	글쓰기
-      </div>
-      <textarea name="boardContent" placeholder="작성해주세요"></textarea>
-    </div>
-
-    <input type="submit" value="등록하기">
-
-    <button type="button" onclick="location.href='RBoardList.jsp'">
+    <!-- 취소버튼 -->
+    <button class="button cancel_btn" type="button" onclick="location.href='RBoardList.jsp'">
       취소하기
     </button>
+
+    <div class="select_wrapper">
+      <!-- 글쓴이 -->
+      <div class="writer_wrpper">
+        <div>
+          <input name="userId" type="text" value="로운" placeholder="작성자">
+        </div>
+      </div>
+
+      <!-- 지점명 -->
+      <div class="company_wrpper">
+        <input name="companyName" type="text" placeholder="지점명">
+      </div>
+
+      <!-- 지역선택 셀렉터 -->
+      <div class="locate_wrpper">
+        <select name="local">
+          <option selected="selected" value="지역">지역을 선택해주세요</option>
+          <option value="강남">강남</option>
+          <option value="관악">관악</option>
+          <option value="구로">구로</option>
+          <option value="마포">마포</option>
+          <option value="송파">송파</option>
+          <option value="영등">영등</option>
+          <option value="용산">용산</option>
+        </select>
+      </div>
+    </div>
+
+
+    <!-- 제목 -->
+    <div class="title_wrapper">
+      <input name="boardTitle" type="text" placeholder="제목">
+    </div>
+
+    <!-- 글쓰기 -->
+    <div class="write_wrpper">
+      <textarea name="boardContent" placeholder="글을 작성해주세요"></textarea>
+    </div>
+
+
   </form>
 </main>
 </body>

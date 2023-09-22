@@ -5,11 +5,12 @@
 <%@ page import="gymCarryProject.board.BoardDTO" %>
 <%@ page import="gymCarryProject.board.RBoardDAO"%>
 <jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
-<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="page" />
+<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="./styles/RBoardDetail.css">
 <title>게시판 페이지</title>
 </head>
 <body>
@@ -32,14 +33,64 @@
 		}
 		dto = dao.getBoard(boardNum);
 	%>
-	<p><%= dto.getBoardNum() %></p>
-	<p><%= dto.getUserId() %></p>
-	<p><%= dto.getLocal() %></p>
-	<p><%= dto.getCompanyName() %></p>
-	<p><%= dto.getBoardTitle() %></p>
-	<p><%= dto.getBoardContent() %></p>
-	<p><%= dto.getBoardRegdate() %></p>
-	<p><%= dto.getViewCnt() %></p>
+ <header>
+		    <%
+		    	if(id == null){
+		    %>
+	        <ul class="header_nav">
+	            <li>
+	                <a href="login.jsp">로그인</a>
+	            </li> 
 	
+	            <li>
+	                <a href="register.jsp">회원가입</a>
+	            </li>
+	
+	            <li>
+	                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+	            </li>  
+	        </ul> 
+		    <%
+		    	} else {		    
+		    %>
+	        <ul class="header_nav">
+	            <li>
+	                <a href="login.jsp"><%=id %>님</a>
+	            </li> 
+   	            <li>
+	                <a href="logoutAction.jsp">로그아웃</a>
+	            </li> 
+	
+	            <li>
+	                <a href=""><img src="마이페이지로고.svg" alt="마이페이지로고"></a>
+	            </li>  
+	        </ul> 
+			<%
+		    	}
+			%>
+	
+	
+	        <div class="header_logo">
+	            <img src="메인로고.svg" alt="짐캐리로고">
+	        </div>
+	        
+	    </header>
+
+
+		<main>
+		  <div class="top_wrapper">
+		    <div><%= dto.getBoardNum() %></div>
+		    <div><%= dto.getCompanyName() %></div>
+		    <div><%= dto.getLocal() %></div>
+		  </div>
+		  <div class="date"><%= dto.getBoardRegdate() %></div>
+		  <h2><%= dto.getBoardTitle() %></h2>  
+		
+		  <div class="middle_wrapper">
+		    <div><%= dto.getUserId() %></div>
+		    <div><%= dto.getViewCnt() %></div>
+		  </div>
+		  <div class="content"><%= dto.getBoardContent() %></div>
+		</main>
 </body>
 </html>

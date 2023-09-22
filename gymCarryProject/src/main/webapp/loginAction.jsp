@@ -5,7 +5,7 @@
  <%@ page import="gymCarryProject.UserDAO" %>
  <% request.setCharacterEncoding("UTF-8"); %>
  <jsp:useBean id="db" class="gymCarryProject.UserDAO" scope="application" />
- <jsp:useBean id="user" class="gymCarryProject.UserDTO" scope="page" />
+ <jsp:useBean id="user" class="gymCarryProject.UserDTO" scope="application" />
  <jsp:setProperty name="user" property="id" />
  <jsp:setProperty name="user" property="pwd" />
  <jsp:setProperty property="*" name="user" />
