@@ -147,7 +147,7 @@ public class ADBoardDAO {
 	
 	public int upViewCnt (int num) throws SQLException {
 		PreparedStatement stmt = null;
-		String sql ="update ad_board selet viewcnt = viewcnt+1 where board_no=?";
+		String sql ="update ad_board set viewcnt = viewcnt+1 where board_no=?";
 		int result = -1;
 		try {
 			con = pool.getConnection();
