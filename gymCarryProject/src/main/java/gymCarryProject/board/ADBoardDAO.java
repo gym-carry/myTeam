@@ -143,4 +143,31 @@ public class ADBoardDAO {
 		}
 		return dto;
 	}
+	//수정하기 > 등록하기와 유사하다
+	public int update (BoardDTO dto) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "update AD_BOARD set board_title=?, board_content=? where board_no=? ";
+		int result = -1; // 수정 오류
+		try {
+		con = pool.getConnection();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, dto.getBoardTitle());
+		stmt.setString(2, dto.getBoardContent());
+		stmt.setInt(3, getNext());
+		System.out.println(stmt.toString());
+
+		result = stmt.executeUpdate();
+		System.out.println(result);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return result; // 성공적으로 등록되면 1 반환 
+	}
 }
