@@ -164,7 +164,7 @@ public class ADBoardDAO {
 				con.close();
 			}
 		}
-		return result; // 성공적으로 등록되면 1 반환 
+		return result; // 조회수 상승
 	}
 	
 	
