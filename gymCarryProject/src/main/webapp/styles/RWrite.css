@@ -1,4 +1,4 @@
-@charset "UTF-8";
+  @charset "UTF-8";
     * {
         box-sizing:border-box;
     }
@@ -14,6 +14,11 @@
     a{
         color: inherit;
         text-decoration: none;
+    }
+
+    h1{
+      border-bottom: 3px solid #38C4A8;
+      padding-bottom: 10px;
     }
 
     /*헤더*/
@@ -48,4 +53,60 @@
     
     .header_logo > img {
       margin-left: 35px;
+    }
+
+    /* 메인 */
+    main {
+      position: relative;
+      width: 800px;
+      margin: 0 auto;
+      margin-top: 50px;
+
+    }
+
+    /* 버튼 */
+    .button {
+      height: 23px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: 16px;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 14px 20px 12px;
+      cursor: pointer;
+    }
+
+    .button:hover{
+      background-color: #21AC90;
+      color: white;
+    }
+
+    .submit_btn{
+      margin-right: 80px;
+    }
+
+    /* 폼 */
+    .write_wrpper textarea{
+      margin-top: 10px;
+      width: 100%;
+      height: 450px;
+      padding: 8px 0 0 8px;
+    }
+
+    .title_wrapper input{
+      width: 100%;
+      height: 35px;
+      margin-top: 10px;
+      padding: 0 0 0 8px;
+    }
+
+    .select_wrapper{
+      display: flex;
+      gap: 20px;
+    }
+
+    .writer_wrpper input, .company_wrpper input, .locate_wrpper select {
+      height: 25px;
+      padding: 0 0 0 8px;
     }
