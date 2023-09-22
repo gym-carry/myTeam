@@ -2,9 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="gymCarryProject.board.*, java.util.*"%>
 <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO"
-	scope="session" />
+	scope="application" />
 <jsp:useBean id="dao" class="gymCarryProject.board.ADBoardDAO"
-	scope="session" />
+	scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,5 +28,7 @@ request.setAttribute("dto", dto);
 	<p><%=dto.getViewCnt()%></p>
     <button type="button" onclick="location.href='editForm.jsp?num=<%=dto.getBoardNum()%>'">
 		수정하기</button>
+	<button type="button" onclick="location.href='adBoardList.jsp'">
+	돌아가기</button>	
 </body>
 </html>

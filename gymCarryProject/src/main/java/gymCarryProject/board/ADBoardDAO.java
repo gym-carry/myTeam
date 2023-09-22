@@ -123,6 +123,7 @@ public class ADBoardDAO {
 			System.out.println(stmt.toString());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
+				upViewCnt(num);
 				dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
 						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
 				System.out.println(dto);
@@ -143,6 +144,30 @@ public class ADBoardDAO {
 		}
 		return dto;
 	}
+	
+	public int upViewCnt (int num) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql ="update ad_board selet viewcnt = viewcnt+1 where board_no=?";
+		int result = -1;
+		try {
+			con = pool.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, num);
+			result = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return result; // 성공적으로 등록되면 1 반환 
+	}
+	
+	
 	//수정하기 > 등록하기와 유사하다
 	public int update (BoardDTO dto) throws SQLException {
 		PreparedStatement stmt = null;
@@ -170,4 +195,5 @@ public class ADBoardDAO {
 		}
 		return result; // 성공적으로 등록되면 1 반환 
 	}
+	
 }
