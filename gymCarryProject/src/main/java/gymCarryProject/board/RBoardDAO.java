@@ -30,8 +30,9 @@ public class RBoardDAO {
 	public int getNext() throws SQLException {
 		con = pool.getConnection();
 		String sql = "SELECT BOARD_NO FROM R_BOARD ORDER BY BOARD_NO DESC";
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				int result = rs.getInt(1) + 1;
@@ -41,7 +42,18 @@ public class RBoardDAO {
 			}
 		}catch(Exception e){
 				e.printStackTrace(); 
-			}
+		}finally {
+	        // ResultSet, PreparedStatement, Connection 등의 리소스를 반환
+	        if (rs != null) {
+	            rs.close();
+	        }
+	        if (pstmt != null) {
+	            pstmt.close();
+	        }
+	        if (con != null) {
+	        	pool.releaseConnection(con);
+	        }
+	    }
 			
 		return -1;
 	}
@@ -51,8 +63,9 @@ public class RBoardDAO {
 		con = pool.getConnection();
 		String sql = "insert into R_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
 	            + ", parent, viewcnt)" + "values(?, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, boardDTO.getUserId());
 			pstmt.setString(3, boardDTO.getLocal());
@@ -62,7 +75,18 @@ public class RBoardDAO {
 			return pstmt.executeUpdate();
 		}catch(Exception e){
 			e.printStackTrace();	
-		}
+		}finally {
+	        // ResultSet, PreparedStatement, Connection 등의 리소스를 반환
+	        if (rs != null) {
+	            rs.close();
+	        }
+	        if (pstmt != null) {
+	            pstmt.close();
+	        }
+	        if (con != null) {
+	        	pool.releaseConnection(con);
+	        }
+	    }
 		return -1;
 	}
 	
@@ -98,7 +122,7 @@ public class RBoardDAO {
 	            pstmt.close();
 	        }
 	        if (con != null) {
-	            con.close();
+	        	pool.releaseConnection(con);
 	        }
 	    }
 		return list;
@@ -112,7 +136,7 @@ public class RBoardDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, boardNum);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				upViewCnt(boardNum);
 				BoardDTO dto = new BoardDTO();
 				dto.setBoardNum(rs.getInt(1));
@@ -136,7 +160,7 @@ public class RBoardDAO {
 	            pstmt.close();
 	        }
 	        if (con != null) {
-	            con.close();
+	            pool.releaseConnection(con);
 	        }
 	    }
 		return null;
@@ -158,7 +182,7 @@ public class RBoardDAO {
 		            stmt.close();
 		         }
 		         if(con != null) {
-		            con.close();
+		        	 pool.releaseConnection(con);
 		         }
 		      }
 		      return result; // 조회수 상승
