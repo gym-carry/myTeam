@@ -74,14 +74,16 @@
 	    </nav>
 	
 	    <main class="main">
-	
+		<div class="img_container">		
 	        <a href="#">
 	            <img src="리뷰로고.svg" alt="리뷰게시판 로고">
 	        </a>
-	
+		</div>
+		<div class="img_container">		
 	        <a href="#">
 	            <img src="홍보로고.svg" alt="홍보게시판 로고">
 	        </a>   
+		</div>
 	    </main>
 	
 	 </div>
