@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 import gymCarryProject.ConnectionPool;
 
@@ -18,8 +17,8 @@ public class ADBoardDAO {
 	public ADBoardDAO() throws ClassNotFoundException {
 		try {
 			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "scott";
-			String dbPWD = "tiger";
+			String dbID = "hr";
+			String dbPWD = "hr";
 			Class.forName("oracle.jdbc.OracleDriver");
 
 			pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 4, true, 500);
@@ -48,7 +47,6 @@ public class ADBoardDAO {
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
-		System.out.println(dto.toString());
 		PreparedStatement stmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
 				+ ", parent, viewcnt)" + "values(?, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
@@ -83,12 +81,15 @@ public class ADBoardDAO {
 		PreparedStatement stmt = null;
 		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
 		ArrayList<BoardDTO> ls = new ArrayList();
+		System.out.println(sql);
 		System.out.println(ls.toString());
 		
 		try {
 			con = pool.getConnection();
 			stmt = con.prepareStatement(sql);
 			rs = stmt.executeQuery();
+			System.out.println(rs.toString());
+			System.out.println("여기");
 			while (rs.next()) {
 				BoardDTO dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
 						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
@@ -122,6 +123,7 @@ public class ADBoardDAO {
 			System.out.println(stmt.toString());
 			rs = stmt.executeQuery();
 			if (rs.next()) {
+				upViewCnt(num);
 				dto = new BoardDTO (rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
 						rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"), rs.getDate("board_regdate"), rs.getInt("viewcnt") );
 				System.out.println(dto);
@@ -142,4 +144,56 @@ public class ADBoardDAO {
 		}
 		return dto;
 	}
+	
+	public int upViewCnt (int num) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql ="update ad_board set viewcnt = viewcnt+1 where board_no=?";
+		int result = -1;
+		try {
+			con = pool.getConnection();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, num);
+			result = stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return result; // 조회수 상승
+	}
+	
+	
+	//수정하기 > 등록하기와 유사하다
+	public int update (BoardDTO dto) throws SQLException {
+		PreparedStatement stmt = null;
+		String sql = "update AD_BOARD set board_title=?, board_content=? where board_no=? ";
+		int result = -1; // 수정 오류
+		try {
+		con = pool.getConnection();
+		stmt = con.prepareStatement(sql);
+		stmt.setString(1, dto.getBoardTitle());
+		stmt.setString(2, dto.getBoardContent());
+		stmt.setInt(3, getNext());
+		System.out.println(stmt.toString());
+
+		result = stmt.executeUpdate();
+		System.out.println(result);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(stmt != null) {
+				stmt.close();
+			}
+			if(con != null) {
+				con.close();
+			}
+		}
+		return result; // 성공적으로 등록되면 1 반환 
+	}
+	
 }
