@@ -51,6 +51,10 @@
     }
 
     /*메인*/
+    .main {
+    	position: relative;
+    	margin-top: 30px;
+    }
     /*메인 네비게이션*/
     .main_nav {
         display: flex;
@@ -76,6 +80,8 @@
     table{
       width: 100%;
       border: 1px solid #bcbcbc;
+      margin-top: 20px;
+      border: none;
     }
 
     .write_btn {
@@ -87,8 +93,24 @@
 
     .filter{
       margin : 0 10px 0 10px;
+      height: 23px;
+    }
+
+    .filter{
+      margin : 0 0 0 10px;
+      height: 23px;
+    }
+    
+    th {
+    	background-color : #D9D9D9;
     }
 
     td {
     	text-align : center;
+    	padding : 5px;
     }
+    
+    .search_input{
+    	width: 250px;
+    }
+    
