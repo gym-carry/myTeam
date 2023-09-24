@@ -165,5 +165,13 @@
       margin-right: 10px;
       width: 70px;
       height: 29px;
+      -webkit-appearance: none; 
+      -moz-appearance: none;
+      appearance: none;
+      background: url(../arrow.svg) no-repeat 93% 53%;
+      background-size: 15px 10px;
+      padding-left: 5px;
+      border-radius: 5px;
+      border-color: #bbb;
     }
     /* -----------------------------------------------*/
