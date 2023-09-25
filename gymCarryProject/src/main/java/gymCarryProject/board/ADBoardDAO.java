@@ -80,7 +80,7 @@ public class ADBoardDAO {
 	public ArrayList<BoardDTO> selectAll() throws SQLException {
 		PreparedStatement stmt = null;
 		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
-		ArrayList<BoardDTO> ls = new ArrayList();
+		ArrayList<BoardDTO> ls = new ArrayList<>();
 		System.out.println(sql);
 		System.out.println(ls.toString());
 		
