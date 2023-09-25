@@ -60,7 +60,7 @@
 
 <main>
   <h1>헬스장 홍보</h1>
-  <form action="RWriteAction.jsp">
+  <form action="adWriteAction.jsp">
      <!-- 등록버튼 -->
     <input class="button submit_btn" type="submit" value="등록하기">
 

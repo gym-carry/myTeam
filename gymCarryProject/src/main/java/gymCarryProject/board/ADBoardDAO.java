@@ -33,28 +33,24 @@ public class ADBoardDAO {
 	}
 
 	// 게시물 번호를 1부터 설정할 수 있도록 해주는 함수
-	public int getNext() {
+	public int getNext() throws SQLException {
 		int result = 0;
 		String sql = "select id from ad_board order by desc";
-		try {
-			PreparedStatement stmt = con.prepareStatement(sql);
-			rs = stmt.executeQuery();
-			if (rs.next()) {
-				result = rs.getInt(1) + 1;
-				return result;
-			} else {
-				return 1; // 게시물이 첫번째인 경우
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		PreparedStatement stmt = con.prepareStatement(sql);
+		rs = stmt.executeQuery();
+		if (rs.next()) {
+			result = rs.getInt(1) + 1;
+			return result;
+		} else {
+			return 1; // 게시물이 첫번째인 경우
 		}
-		return -1; // 게시물이 없는 경우
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
 		PreparedStatement stmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
-				+ ", parent, viewcnt)" + "values(?, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
+				+ ", parent, viewcnt)" + "values(?, ?, ?, ?, ?, ?, sysdate, 0, 0)";
 		int result = -1; // 게시글 등록 오류
 		con = pool.getConnection();
 		stmt = con.prepareStatement(sql);
@@ -145,7 +141,7 @@ public class ADBoardDAO {
 		stmt = con.prepareStatement(sql);
 		stmt.setString(1, dto.getBoardTitle());
 		stmt.setString(2, dto.getBoardContent());
-		stmt.setInt(3, getNext());
+		stmt.setInt(3, dto.getBoardNum());
 		System.out.println(stmt.toString());
 
 		result = stmt.executeUpdate();
