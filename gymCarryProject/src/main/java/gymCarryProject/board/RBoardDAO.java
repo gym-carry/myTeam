@@ -10,7 +10,7 @@ import gymCarryProject.ConnectionPool;
 
 public class RBoardDAO {
 	String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	String dbID = "scott";
+	String dbID = "hr";
 	String dbPWD = "tiger";
 	private int result;
 	private Connection con;
