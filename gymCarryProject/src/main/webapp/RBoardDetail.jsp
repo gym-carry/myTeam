@@ -4,8 +4,8 @@
 <%@ page import="gymCarryProject.*, java.util.Date" %>
 <%@ page import="gymCarryProject.board.BoardDTO" %>
 <%@ page import="gymCarryProject.board.RBoardDAO"%>
-<jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="request" />
-<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="request" />
+<jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
+<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -89,8 +89,8 @@
 		  <div class="middle_wrapper">
 		    <div><%= dto.getUserId() %></div>
 		    <div><%= dto.getViewCnt() %></div>
-	        <button class="mod_btn" type="button">수정</button>
-    		<button type="button">삭제</button> 
+	        <button class="mod_btn" type="button" onclick="location.href='Update.jsp?num=<%= dto.getBoardNum() %>'">수정</button>
+    		<button type="button" onclick="location.href='deleteAction.jsp?num=<%= dto.getBoardNum() %>'">삭제</button> 
 		  </div>
 		  <div class="content"><%= dto.getBoardContent() %></div>
 		</main>
