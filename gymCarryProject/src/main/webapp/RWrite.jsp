@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="./styles/RWrite.css">
-<title>Insert title here</title>
+<title>헬스장 리뷰</title>
 </head>
 <body>
 	<%
@@ -73,7 +73,7 @@
       <!-- 글쓴이 -->
       <div class="writer_wrpper">
         <div>
-          <input name="userId" type="text" value="로운" placeholder="작성자">
+          <input name="userId" type="text" value="<%=id %>" placeholder="작성자">
         </div>
       </div>
 

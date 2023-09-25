@@ -89,6 +89,8 @@
 		  <div class="middle_wrapper">
 		    <div><%= dto.getUserId() %></div>
 		    <div><%= dto.getViewCnt() %></div>
+	        <button class="mod_btn" type="button" onclick="location.href='Update.jsp?num=<%= dto.getBoardNum() %>'">수정</button>
+    		<button type="button" onclick="location.href='deleteAction.jsp?num=<%= dto.getBoardNum() %>'">삭제</button> 
 		  </div>
 		  <div class="content"><%= dto.getBoardContent() %></div>
 		</main>
