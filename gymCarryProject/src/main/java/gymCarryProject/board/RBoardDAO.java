@@ -133,5 +133,16 @@ public class RBoardDAO {
 		      return result; // 조회수 상승
 		   }
 	
-	
+	public int update(int boardNum, String boardTitle, String boardContent) throws SQLException {
+		con = pool.getConnection();
+		String sql = "UPDATE R_BOARD SET board_title = ?, board_content = ? WEHRE board_no = ?";
+		PreparedStatement pstmt = null;
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, boardTitle);
+		pstmt.setString(2, boardContent);
+		pstmt.setInt(3, boardNum);
+		pstmt.close();
+		pool.releaseConnection(con);
+		return pstmt.executeUpdate(); 
+	}
 }
