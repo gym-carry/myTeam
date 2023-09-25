@@ -25,7 +25,7 @@ public class ADBoardDAO {
 			e.printStackTrace();
 		}
 		try {
-			pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 5, true, 500);
+			pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 5, true, 1000);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
