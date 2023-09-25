@@ -89,6 +89,8 @@
 		  <div class="middle_wrapper">
 		    <div><%= dto.getUserId() %></div>
 		    <div><%= dto.getViewCnt() %></div>
+		    		 <button class="mod-btn" type="button">수정</button>
+		 			 <button type="button">삭제</button>
 		  </div>
 		  <div class="content"><%= dto.getBoardContent() %></div>
 		</main>

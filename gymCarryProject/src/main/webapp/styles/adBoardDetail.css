@@ -84,6 +84,22 @@
       display: flex;
       margin-top: 0;
       margin-bottom: 10px;
+      position: relative;
+    }
+    
+    .mod-btn{
+      margin-right: 46px;
+    }
+    
+    button {
+      position: absolute;
+      right: 0;
+      border: none;
+      border-radius: 5px;
+      width: 40px;
+      height: 25px;
+      color: #FFFFFF;
+      background-color: #bbb;
     }
 
     .middle_wrapper div:first-child{
@@ -94,3 +110,4 @@
       border-top: 2px solid #21AC90;
       padding-top: 15px;
     }
+    
