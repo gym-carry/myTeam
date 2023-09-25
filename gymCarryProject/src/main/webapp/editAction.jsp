@@ -10,7 +10,6 @@
 <%
 
 	int result = dao.update(dto);
-
 %>
 <head>
 <meta charset="UTF-8">
@@ -22,7 +21,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('게시물 수정이 완료되었습니다.')");
-		script.println("location.href='adBoardList'");
+		script.println("location.href='adBoardList.jsp'");
 		script.println("</script>");
 	} else if (result == -1) {
 		PrintWriter script = response.getWriter();

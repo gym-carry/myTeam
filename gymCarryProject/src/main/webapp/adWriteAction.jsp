@@ -41,7 +41,7 @@
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert( '게시글 등록이 완료되었습니다.')");
-			script.println("location.href= 'adBoardDetail.jsp'");
+			script.println("location.href= 'adBoardList.jsp'");
 			script.println("</script>");
 		} else if (result == -1 ) {
 			PrintWriter script = response.getWriter();
