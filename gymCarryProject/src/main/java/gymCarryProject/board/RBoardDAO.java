@@ -9,18 +9,22 @@ import java.util.ArrayList;
 import gymCarryProject.ConnectionPool;
 
 public class RBoardDAO {
+	String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
+	String dbID = "scott";
+	String dbPWD = "tiger";
 	private int result;
 	private Connection con;
 	private ConnectionPool pool;
 	private ResultSet rs;
+	private static final String jdbcclass = "oracle.jdbc.OracleDriver";   
 
 	public RBoardDAO() throws ClassNotFoundException {
 		try {
-			String dbURL = "jdbc:oracle:thin:@localhost:1521:xe";
-			String dbID = "scott";
-			String dbPWD = "tiger";
-			Class.forName("oracle.jdbc.OracleDriver");
-
+			Class.forName(jdbcclass);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		try {
 			pool = ConnectionPool.getInstance(dbURL, dbID, dbPWD, 3, 4, true, 500);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -65,13 +69,14 @@ public class RBoardDAO {
 	public ArrayList<BoardDTO> getList() throws SQLException{
 		con = pool.getConnection();
 		String sql = "SELECT board_no, id, local, company_name, board_title, board_regdate, viewcnt FROM R_BOARD ORDER BY BOARD_NO DESC";
+		BoardDTO dto = null;
 		ArrayList<BoardDTO> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 			pstmt = con.prepareStatement(sql);
 //			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				BoardDTO dto = new BoardDTO();
+				dto = new BoardDTO();
 				dto.setBoardNum(rs.getInt(1));
 				dto.setUserId(rs.getString(2));
 				dto.setLocal(rs.getString(3));
@@ -81,8 +86,10 @@ public class RBoardDAO {
 				dto.setViewCnt(rs.getInt(7));
 				list.add(dto);
 			}
+		System.out.println(dto);
 		pstmt.close();
-//		pool.releaseConnection(con);
+		rs.close();
+		pool.releaseConnection(con);
 		return list;
 	}
 	
@@ -93,9 +100,10 @@ public class RBoardDAO {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, boardNum);
 			rs = pstmt.executeQuery();
+			BoardDTO dto = null;
 			while(rs.next()) {
 				upViewCnt(boardNum);
-				BoardDTO dto = new BoardDTO();
+				dto = new BoardDTO();
 				dto.setBoardNum(rs.getInt(1));
 				dto.setUserId(rs.getString(2));
 				dto.setLocal(rs.getString(3));
@@ -104,12 +112,12 @@ public class RBoardDAO {
 				dto.setBoardContent(rs.getString(6));
 				dto.setBoardRegdate(rs.getDate(7));
 				dto.setViewCnt(rs.getInt(8));
-
-				return dto;
 			}
+		System.out.println(dto);
+		rs.close();
 		pstmt.close();
-		pool.releaseConnection(con);
-		return null;
+		//pool.releaseConnection(con);
+		return dto;
 	}
 	
 	   public int upViewCnt (int num) throws SQLException {

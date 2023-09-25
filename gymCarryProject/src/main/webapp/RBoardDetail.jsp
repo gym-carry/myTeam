@@ -4,8 +4,8 @@
 <%@ page import="gymCarryProject.*, java.util.Date" %>
 <%@ page import="gymCarryProject.board.BoardDTO" %>
 <%@ page import="gymCarryProject.board.RBoardDAO"%>
-<jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="application" />
-<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="application" />
+<jsp:useBean id="dao" class="gymCarryProject.board.RBoardDAO" scope="request" />
+<jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO" scope="request" />
 <!DOCTYPE html>
 <html>
 <head>
