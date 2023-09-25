@@ -61,7 +61,7 @@ public class RBoardDAO {
 		pstmt.setString(5, boardDTO.getBoardTitle());
 		pstmt.setString(6, boardDTO.getBoardContent());	
 		pstmt.close();
-		pool.releaseConnection(con);
+		//pool.releaseConnection(con);
 		return pstmt.executeUpdate();		
 	}
 	
@@ -133,16 +133,38 @@ public class RBoardDAO {
 		      return result; // 조회수 상승
 		   }
 	
-	public int update(int boardNum, String boardTitle, String boardContent) throws SQLException {
-		con = pool.getConnection();
-		String sql = "UPDATE R_BOARD SET board_title = ?, board_content = ? WEHRE board_no = ?";
-		PreparedStatement pstmt = null;
-		pstmt = con.prepareStatement(sql);
-		pstmt.setString(1, boardTitle);
-		pstmt.setString(2, boardContent);
-		pstmt.setInt(3, boardNum);
-		pstmt.close();
-		pool.releaseConnection(con);
-		return pstmt.executeUpdate(); 
-	}
+	   public int update(BoardDTO dto) throws SQLException {
+		      PreparedStatement stmt = null;
+		      String sql = "update R_BOARD set board_title=?, board_content=? where board_no=? ";
+		      int result = -1; // 수정 오류
+		      con = pool.getConnection();
+		      stmt = con.prepareStatement(sql);
+		      stmt.setString(1, dto.getBoardTitle());
+		      stmt.setString(2, dto.getBoardContent());
+		      stmt.setInt(3, dto.getBoardNum());
+		      System.out.println(stmt.toString());
+
+		      result = stmt.executeUpdate();
+		      System.out.println(result);
+		      stmt.close();
+
+		      pool.releaseConnection(con);
+
+		      return result; // 성공적으로 등록되면 1 반환
+		   }
+	   public int delete(int num) throws SQLException {
+		      PreparedStatement stmt = null;
+		      String sql = "delete from r_board where board_no =?";
+		      int result = -1;
+
+		      con = pool.getConnection();
+		      stmt = con.prepareStatement(sql);
+		      stmt.setInt(1, num);
+
+		      result = stmt.executeUpdate();
+
+		      stmt.close();
+		      pool.releaseConnection(con);
+		      return result; // 성공적으로 등록되면 1 반환
+		   }
 }
