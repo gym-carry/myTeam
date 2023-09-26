@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="./styles/home.css">
 <title>메인화면</title>
 </head>
-<body>
+<body class="body_wrpper">
 	<%
 		String id = null;
 		if(session.getAttribute("id") != null){
@@ -87,5 +87,12 @@
 	    </main>
 	
 	 </div>
+	 <footer>
+  <address>
+    <p>dev.rowoon@gmail.com</p>
+    <p>weew9900@gmail.com</p>
+    <p>copyright &copy; by 로운완.All Rights Reserved.</p> 
+  </address>
+</footer>
 </body>
 </html>
