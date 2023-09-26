@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="./styles/register.css" rel="stylesheet">
 	    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>	
-		<script type="text/javascript" src="./scripts/register.js"></script>
+		<script type="text/javascript" src="./scripts/register.js" defer></script>
     </head>
     <body>
      <form class="register_form" name="myform" action="registerAction.jsp" onsubmit="return checkInput(myform)" >
@@ -16,7 +16,7 @@
         <div class="id_wrapper">
 
         <input class="input_field input_login" id="userID" type="text" size="12" maxlength="12" name="id" placeholder="아이디"/>
-        <button class="reg_btn dc_btn" onClick="registerCheckFunction" type="button" name="dc" value="중복확인"></button>
+        <button class="reg_btn dc_btn" onClick="registerCheckFunction" type="button" name="dc" value="중복확인">중복확인</button>
             
         </div>
         <input class="input_field input_login" id="userPassword1" type="password" name="pwd"  placeholder="비밀번호" />
