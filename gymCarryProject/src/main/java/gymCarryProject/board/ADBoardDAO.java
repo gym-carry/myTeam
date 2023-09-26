@@ -50,7 +50,7 @@ public class ADBoardDAO {
 	public int insert(BoardDTO dto) throws SQLException {
 		PreparedStatement stmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
-				+ ", parent, viewcnt)" + "values(?, ?, ?, ?, ?, ?, sysdate, 0, 0)";
+				+ ", parent, viewcnt)" + " values(?, ?, ?, ?, ?, ?, sysdate, 0, 0)";
 		int result = -1; // 게시글 등록 오류
 		con = pool.getConnection();
 		stmt = con.prepareStatement(sql);
@@ -64,6 +64,7 @@ public class ADBoardDAO {
 
 		result = stmt.executeUpdate();
 		System.out.println(result);
+		stmt.close();
 		pool.releaseConnection(con);
 
 		return result; // 성공적으로 등록되면 1 반환
