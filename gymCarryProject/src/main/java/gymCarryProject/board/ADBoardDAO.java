@@ -37,8 +37,8 @@ public class ADBoardDAO {
 		int result = 0;
 		String sql = "SELECT BOARD_NO FROM R_BOARD ORDER BY BOARD_NO DESC";
 
-		PreparedStatement stmt = con.prepareStatement(sql);
-		rs = stmt.executeQuery();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
 		System.out.println(rs.next());
 		if (rs.next()) {
 			System.out.println("???????????????"+rs.getInt(1));
@@ -51,39 +51,36 @@ public class ADBoardDAO {
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate, parent, viewcnt) values(?, ?, ?, ?, ?, ?, sysdate, 0, 0)";
 		int result = -1; // 게시글 등록 오류
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		System.out.println("111");
+		pstmt = con.prepareStatement(sql);
 
-		stmt.setInt(1, getNext());
-		System.out.println("222");
-		stmt.setString(2, dto.getUserId());
-		stmt.setString(3, dto.getLocal());
-		stmt.setString(4, dto.getCompanyName());
-		stmt.setString(5, dto.getBoardTitle());
-		stmt.setString(6, dto.getBoardContent());
-		System.out.println(stmt.toString());
+		pstmt.setInt(1, getNext());
+		pstmt.setString(2, dto.getUserId());
+		pstmt.setString(3, dto.getLocal());
+		pstmt.setString(4, dto.getCompanyName());
+		pstmt.setString(5, dto.getBoardTitle());
+		pstmt.setString(6, dto.getBoardContent());
+		System.out.println(pstmt.toString());
 
-		result = stmt.executeUpdate();
+		result = pstmt.executeUpdate();
 		System.out.println(result);
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 
 		return result; // 성공적으로 등록되면 1 반환
 	}
 
 	public ArrayList<BoardDTO> selectAll() throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
 		ArrayList<BoardDTO> ls = new ArrayList<>();
-		System.out.println(sql);
-		System.out.println(ls.toString());
+
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		rs = stmt.executeQuery();
+		pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
 		System.out.println(rs.toString());
 		System.out.println("여기");
 		while (rs.next()) {
@@ -95,7 +92,7 @@ public class ADBoardDAO {
 		}
 
 		rs.close();
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return ls;
 	}
