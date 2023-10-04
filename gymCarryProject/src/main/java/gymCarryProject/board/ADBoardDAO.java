@@ -41,9 +41,7 @@ public class ADBoardDAO {
 		rs = pstmt.executeQuery();
 		System.out.println(rs.next());
 		if (rs.next()) {
-			System.out.println("???????????????"+rs.getInt(1));
-			result = rs.getInt(1) + 1;
-			
+			result = rs.getInt(1) + 1;		
 			return result;
 		} else {
 			return 1; // 게시물이 첫번째인 경우
