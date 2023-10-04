@@ -29,17 +29,17 @@ public class UserDAO {
 	public int insert(UserDTO dto) throws SQLException {
 		con = pool.getConnection();
 		String sql = "insert into R_USER(id, name, pwd, email, phone)" + "VALUES(?, ?, ?, ?, ?)";
-		PreparedStatement stmt = con.prepareStatement(sql);
+		PreparedStatement pstmt = con.prepareStatement(sql);
 
 		System.out.println(sql);
-		stmt.setString(1, dto.getId());
-		stmt.setString(2, dto.getName());
-		stmt.setString(3, dto.getPwd());
-		stmt.setString(4, dto.getEmail());
-		stmt.setString(5, dto.getPhone());
+		pstmt.setString(1, dto.getId());
+		pstmt.setString(2, dto.getName());
+		pstmt.setString(3, dto.getPwd());
+		pstmt.setString(4, dto.getEmail());
+		pstmt.setString(5, dto.getPhone());
 
-		result = stmt.executeUpdate();
-		stmt.close();
+		result = pstmt.executeUpdate();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return result;
 	}
@@ -52,8 +52,8 @@ public class UserDAO {
 		con = pool.getConnection();
 		String sql = "select * from R_USER where id = '" + input.getId() + "'and pwd = '" + input.getPwd() + "'";
 		System.out.println(sql);
-		PreparedStatement stmt = con.prepareStatement(sql);
-		rs = stmt.executeQuery();
+		PreparedStatement pstmt = con.prepareStatement(sql);
+		rs = pstmt.executeQuery();
 		UserDTO user = null;
 		while (rs.next()) {
 			user = new UserDTO(rs.getString("id"), rs.getString("name"), rs.getString("pwd"), rs.getString("email"),
@@ -61,23 +61,23 @@ public class UserDAO {
 		}
 		System.out.println(user);
 		rs.close();
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return user;
 	}
 
 	public int login(String id, String pwd) throws SQLException, ClassNotFoundException {
 		Connection con = null;
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			con = pool.getConnection();
 			String sql = "SELECT PWD FROM R_USER WHERE ID=?";
-			stmt = con.prepareStatement(sql);
-			stmt.setString(1, id);
-			rs = stmt.executeQuery();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				if (rs.getString(1).equals(pwd)) {
@@ -96,8 +96,8 @@ public class UserDAO {
 				if (rs != null) {
 					rs.close();
 				}
-				if (stmt != null) {
-					stmt.close();
+				if (pstmt != null) {
+					pstmt.close();
 				}
 				if (con != null) {
 					pool.releaseConnection(con);

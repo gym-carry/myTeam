@@ -96,15 +96,15 @@ public class ADBoardDAO {
 	}
 
 	public BoardDTO select(int num) throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD  where board_no =?";
 		BoardDTO dto = null;
 
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		stmt.setInt(1, num);
-		System.out.println(stmt.toString());
-		rs = stmt.executeQuery();
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		System.out.println(pstmt.toString());
+		rs = pstmt.executeQuery();
 		if (rs.next()) {
 			upViewCnt(num);
 			dto = new BoardDTO(rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
@@ -114,40 +114,40 @@ public class ADBoardDAO {
 		}
 
 		rs.close();
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return dto;
 	}
 
 	public int upViewCnt(int num) throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "update ad_board set viewcnt = viewcnt+1 where board_no=?";
 		int result = -1;
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		stmt.setInt(1, num);
-		result = stmt.executeUpdate();
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
+		result = pstmt.executeUpdate();
 
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return result; // 조회수 상승
 	}
 
 	// 수정하기 > 등록하기와 유사하다
 	public int update(BoardDTO dto) throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "update AD_BOARD set board_title=?, board_content=? where board_no=? ";
 		int result = -1; // 수정 오류
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		stmt.setString(1, dto.getBoardTitle());
-		stmt.setString(2, dto.getBoardContent());
-		stmt.setInt(3, dto.getBoardNum());
-		System.out.println(stmt.toString());
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getBoardTitle());
+		pstmt.setString(2, dto.getBoardContent());
+		pstmt.setInt(3, dto.getBoardNum());
+		System.out.println(pstmt.toString());
 
-		result = stmt.executeUpdate();
+		result = pstmt.executeUpdate();
 		System.out.println(result);
-		stmt.close();
+		pstmt.close();
 
 		pool.releaseConnection(con);
 
@@ -155,17 +155,17 @@ public class ADBoardDAO {
 	}
 
 	public int delete(int num) throws SQLException {
-		PreparedStatement stmt = null;
+		PreparedStatement pstmt = null;
 		String sql = "delete from ad_board where board_no =?";
 		int result = -1;
 
 		con = pool.getConnection();
-		stmt = con.prepareStatement(sql);
-		stmt.setInt(1, num);
+		pstmt = con.prepareStatement(sql);
+		pstmt.setInt(1, num);
 
-		result = stmt.executeUpdate();
+		result = pstmt.executeUpdate();
 
-		stmt.close();
+		pstmt.close();
 		pool.releaseConnection(con);
 		return result; // 성공적으로 등록되면 1 반환
 	}
