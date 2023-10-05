@@ -19,10 +19,12 @@
 
 ## 기술 스택
 ![image](https://github.com/gym-carry/myTeam/assets/114975279/2840a3a1-85f4-4c9c-b885-3cc5d6603fd3)
-## Plug In
-
-## 데이터 설계
-
-## useCase
 
 ## ERD
+![image](https://github.com/gym-carry/myTeam/assets/114975279/8c26de19-9a8e-40ff-bef5-d2060b878a6e)
+
+
+## useCase
+![image](https://github.com/gym-carry/myTeam/assets/114975279/a19a24c8-80d3-46e5-b766-d0046a6fa166)
+
+## 사용예시
