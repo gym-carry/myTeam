@@ -51,7 +51,7 @@ public class RBoardDAO {
 	public int write(BoardDTO boardDTO) throws SQLException {
 		con = pool.getConnection();
 		String sql = "insert into R_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate"
-	            + ", parent, viewcnt)" + "values(?, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
+	            + ", parent, viewcnt)" + " values(?, ?, ?, ? , ? ,? ,sysdate, 0, 0)";
 		PreparedStatement pstmt = null;
 		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, getNext());
@@ -60,7 +60,7 @@ public class RBoardDAO {
 		pstmt.setString(4, boardDTO.getCompanyName());
 		pstmt.setString(5, boardDTO.getBoardTitle());
 		pstmt.setString(6, boardDTO.getBoardContent());	
-		pstmt.close();
+		//pstmt.close();
 		//pool.releaseConnection(con);
 		return pstmt.executeUpdate();		
 	}
