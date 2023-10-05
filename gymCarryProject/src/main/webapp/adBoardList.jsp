@@ -15,7 +15,7 @@
 <link href="css/style.css" rel="stylesheet">
 
 </head>
-<body>
+<body class="body_wrpper">
 	<%
 	String id = null;
 	if (session.getAttribute("id") != null) {
@@ -108,6 +108,12 @@
 			</tbody>
 		</table>
 	</main>
-
+<footer>
+  <address>
+    <p>dev.rowoon@gmail.com</p>
+    <p>weew9900@gmail.com</p>
+    <p>copyright &copy; by 로운완.All Rights Reserved.</p> 
+  </address>
+</footer>
 </body>
 </html>

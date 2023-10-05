@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="./styles/editForm.css">
+<link rel="stylesheet" href="./styles/RWrite.css">
 <title>수정하기</title>
 <%
    String id = null;
@@ -54,8 +54,9 @@
 
    </header>
 
-
-     <form action="updateAction.jsp" method="post">
+	<main>
+	<h1>헬스장 리뷰</h1>
+	 <form action="updateAction.jsp" method="post">
      <input type="hidden" name="boardNum" value="<%= dto.getBoardNum()%>">
      <!-- 등록버튼 -->
     <input class="button submit_btn" type="submit" value="수정하기">
@@ -106,6 +107,8 @@
 
 
   </form>
+	</main>
+    
 
 </body>
 </html>
