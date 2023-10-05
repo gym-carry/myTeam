@@ -28,3 +28,22 @@
 ![image](https://github.com/gym-carry/myTeam/assets/114975279/a19a24c8-80d3-46e5-b766-d0046a6fa166)
 
 ## 사용예시
+### 메인 화면
+https://github.com/gym-carry/myTeam/assets/114975279/2e47db12-69a0-422e-9eab-0db9fd87f42c
+### 로그인
+https://github.com/gym-carry/myTeam/assets/114975279/09c9ef9f-a954-42b2-b288-30b34bb0435f
+### 회원가입
+https://github.com/gym-carry/myTeam/assets/114975279/564aeeee-7190-498a-bc73-142788325b3f
+### 리뷰게시판
+게시글 등록
+https://github.com/gym-carry/myTeam/assets/114975279/5d9736a1-f6ba-438d-8059-a43733d2d38a
+게시글 삭제
+https://github.com/gym-carry/myTeam/assets/114975279/1dad7cfc-5e22-4efe-8224-9c37ab838ecf
+
+
+
+
+
+
+
+
