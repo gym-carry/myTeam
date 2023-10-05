@@ -38,6 +38,10 @@ https://github.com/gym-carry/myTeam/assets/114975279/564aeeee-7190-498a-bc73-142
 https://github.com/gym-carry/myTeam/assets/114975279/2b18dccd-10a9-4259-89d0-52c21f13594f
 ### 게시판 글 삭제
 https://github.com/gym-carry/myTeam/assets/114975279/45153b3d-012d-4fa0-a439-943604fe0b08
+### 게시판 글 수정
+https://github.com/gym-carry/myTeam/assets/114975279/a33746be-e76a-4acc-b8b8-d21d85df7171
+
+
 
 
 
