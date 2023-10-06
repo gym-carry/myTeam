@@ -14,8 +14,7 @@
 <body>
 <%
 		String id = null;
-		int result = 0;
-
+		
 		if (session.getAttribute("id") != null) {
 		id =(String)session.getAttribute("id");	
 		}
@@ -28,17 +27,16 @@
 			script.println("</script>");
 		}
 		
-		if(user.getBoardTitle() == null &&user.getCompanyName() == null 
-		   && user.getBoardContent() == null) {
+		if(user.getBoardTitle() == null &&user.getCompanyName() == null && user.getBoardContent() == null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('모든 항목들을 입력해주세요')");
 			script.println("history.back()");
 			script.println("</script>");
-		} else {		
-		System.out.println("여기야!"+user.getCompanyName());
-		result = db.insert(user);
-		}
+		} else {
+			int result = db.insert(user);
+		
+		System.out.println("action "+result);
 		if (result == 1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
@@ -53,6 +51,7 @@
 			script.println("</script>");
 		}
 		
+		}
 		
 		
 %>

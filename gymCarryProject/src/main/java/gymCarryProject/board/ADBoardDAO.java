@@ -34,53 +34,60 @@ public class ADBoardDAO {
 
 	// 게시물 번호를 1부터 설정할 수 있도록 해주는 함수
 	public int getNext() throws SQLException {
-		int result = 0;
-		String sql = "SELECT BOARD_NO FROM R_BOARD ORDER BY BOARD_NO DESC";
+
+		String sql = "SELECT BOARD_NO FROM AD_BOARD ORDER BY BOARD_NO DESC";
 
 		PreparedStatement pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
-		System.out.println(rs.next());
+
 		if (rs.next()) {
-			result = rs.getInt(1) + 1;		
+			int result = rs.getInt(1) + 1;
+			pstmt.close();
+			// pool.releaseConnection(con); //여기서 pool을 release하면 안됩니다~
+			System.out.println("넥스트 " + result);
 			return result;
-		} else {
-			return 1; // 게시물이 첫번째인 경우
+		} else { // 게시물이 첫번째인 경우
+			return 1;
 		}
 	}
 
 	public int insert(BoardDTO dto) throws SQLException {
 		PreparedStatement pstmt = null;
 		String sql = "insert into AD_BOARD(board_no, id, local, company_name, board_title, board_content, board_regdate, parent, viewcnt) values(?, ?, ?, ?, ?, ?, sysdate, 0, 0)";
-		int result = -1; // 게시글 등록 오류
+		int success = -1; // 게시글 등록 오류
 		con = pool.getConnection();
-		pstmt = con.prepareStatement(sql);
 
+		pstmt = con.prepareStatement(sql);
 		pstmt.setInt(1, getNext());
 		pstmt.setString(2, dto.getUserId());
 		pstmt.setString(3, dto.getLocal());
 		pstmt.setString(4, dto.getCompanyName());
 		pstmt.setString(5, dto.getBoardTitle());
 		pstmt.setString(6, dto.getBoardContent());
-		System.out.println(pstmt.toString());
 
-		result = pstmt.executeUpdate();
-		System.out.println(result);
+		success = pstmt.executeUpdate();
 		pstmt.close();
-		pool.releaseConnection(con);
-
-		return result; // 성공적으로 등록되면 1 반환
+		if (con != null) {
+			try {
+				pool.releaseConnection(con);
+			} catch (SQLException e) {
+				e.printStackTrace(); 
+				System.out.println("오류남~");
+			}
+		}
+		System.out.println("success " + success);
+		return success; // 성공적으로 등록되면 1 반환
 	}
 
 	public ArrayList<BoardDTO> selectAll() throws SQLException {
 		PreparedStatement pstmt = null;
-		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ";
+		String sql = "select board_no, id, local, company_name, board_title, board_content, board_regdate, viewcnt from AD_BOARD ORDER BY board_no DESC";
 		ArrayList<BoardDTO> ls = new ArrayList<>();
 
 		con = pool.getConnection();
 		pstmt = con.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 		System.out.println(rs.toString());
-		System.out.println("여기");
 		while (rs.next()) {
 			BoardDTO dto = new BoardDTO(rs.getInt("board_no"), rs.getString("id"), rs.getString("local"),
 					rs.getString("company_name"), rs.getString("board_title"), rs.getString("board_content"),
