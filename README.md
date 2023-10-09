@@ -29,17 +29,41 @@
 
 ## 사용예시
 ### 메인 화면
-https://github.com/gym-carry/myTeam/assets/114975279/2e47db12-69a0-422e-9eab-0db9fd87f42c
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/c2ae9d3d-75a0-4eac-b47e-b6e3a6e6b828
+
+
 ### 로그인
-https://github.com/gym-carry/myTeam/assets/114975279/09c9ef9f-a954-42b2-b288-30b34bb0435f
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/71278125-998e-4fe0-b862-5e1e54e48759
+
+
 ### 회원가입
-https://github.com/gym-carry/myTeam/assets/114975279/564aeeee-7190-498a-bc73-142788325b3f
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/22a94297-bff6-43d8-b90a-4b6335a120f0
+
+
 ### 게시판 글 작성
-https://github.com/gym-carry/myTeam/assets/114975279/2b18dccd-10a9-4259-89d0-52c21f13594f
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/db807dd9-2596-4445-bbdc-79d2f234f504
+
+
 ### 게시판 글 삭제
-https://github.com/gym-carry/myTeam/assets/114975279/45153b3d-012d-4fa0-a439-943604fe0b08
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/be13409a-1d3e-4f3d-9fed-d1196ca5765c
+
+
 ### 게시판 글 수정
-https://github.com/gym-carry/myTeam/assets/114975279/a33746be-e76a-4acc-b8b8-d21d85df7171
+
+
+https://github.com/gym-carry/myTeam/assets/114975279/10902411-6975-4988-a80c-aeb8fa3cbb83
+
+
 
 
 
