@@ -17,8 +17,17 @@
 |---|---|
 |![이로운](https://avatars.githubusercontent.com/u/114975279?s=400&u=136607651ecac4392d4e07df83ed7dccaff12012&v=4)|![김완](https://avatars.githubusercontent.com/u/143474795?v=4)|
 
+## 🔨 Tool
+- IDE : Eclipse
+- 디자인 패턴 : MVC 모델 1
+
 ## 기술 스택
 ![image](https://github.com/gym-carry/myTeam/assets/114975279/2840a3a1-85f4-4c9c-b885-3cc5d6603fd3)
+
+## 협업 flow
+### github flow
+![image](https://github.com/gym-carry/myTeam/assets/114975279/04b3732e-baa4-40eb-837b-a69d6430b902)
+
 
 ## ERD
 ![image](https://github.com/gym-carry/myTeam/assets/114975279/8c26de19-9a8e-40ff-bef5-d2060b878a6e)
