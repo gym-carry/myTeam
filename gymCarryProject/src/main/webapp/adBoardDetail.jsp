@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="gymCarryProject.board.*, java.util.*"%>
+<%@ page import="gymCarryProject.board.BoardDTO" %>
+<%@ page import="gymCarryProject.board.ADBoardDAO"%>
 <%@ page import="java.io.PrintWriter" %>
 <jsp:useBean id="dto" class="gymCarryProject.board.BoardDTO"
 	scope="request" />
